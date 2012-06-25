@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>rrestjs高性能node.js框架-首页
+    </title><meta http-equiv="content-type" content="text/html;charset=utf-8">
+<meta name="keywords" content="rrestjs,node.js高性能框架,nodejs框架,node框架,node.js框架,node.js restful,nodejs restful, node restful,node.js restful 框架" />
+<meta name="description" content="高性能node.js的roa&restful web开发框架" />
+<link type="text/css" rel="stylesheet" href="/static/css/base.css"/>
+
+    <body>
+    </body>
+    <div class="warp">
+      <h1>rrestjs（高性能 restful nodejs网站框架）
+      </h1><a href="/" class="i_a">了解rrestjs</a><a href="/study" class="i_a">教程</a><a href="/test" class="i_a">性能</a><a href="/feature" class="i_a">功能</a><a href="/message" class="i_a">留言</a><a href="http://snoopyxdy.blog.163.com/" target="_blank" class="i_a">博客</a><a href="https://github.com/DoubleSpout/rrestjs" target="_blank" class="i_a">github</a>
+      <p>首页页面
+      </p>
+    </div>
+  </head>
+</html>
+<div class="foot">node.js-rrestjs web框架<br/>2011 Copyright © spout<br/>Email:snoopyxdy@163.com; qq:53822985
+</div>
+<script type="text/javascript" src="/static/js/jquery.1.6.2.js"></script>
+<script type="text/javascript" src="/static/js/base.js"></script>

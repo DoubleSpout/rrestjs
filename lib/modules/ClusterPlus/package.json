@@ -1,0 +1,10 @@
+{
+  "name": "ClusterPlus",
+  "description": "Auto reload, multi process listen multi port",
+  "version": "0.1.0",
+  "author": "DoubleSpout <snoopyxdy@163.com>",
+  "keywords": ["cluster", "multi port", "auto load", "clusterplus"],
+  "repository": "git://github.com/DoubleSpout/ClusterPlus",
+  "main": "index",
+  "engines": { "node":">= 0.6.5" }
+}

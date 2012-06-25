@@ -1,0 +1,20 @@
+<!DOCTYPE>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>rrestjs 框架监控</title>
+</head>
+<body>
+<h1>rrestjs 框架监控</h1>
+<p>应用启动时间：<b>$starttime</b>, 当前时间：<b>$nowtime</b>，应用监听端口：<b>$listenport</b></p>
+<p>当前正在运行子进程ID：<b>$pid</b></p>
+<p><br/>运行日志：<br/>
+$logger
+</p>
+<div>
+<form action="/index/delete" method="post">
+ <br/><br/><input name="pid" id="pid" value=""  maxlength="10" autocomplete="off"/> *填写上面子进程号<br/><br/>
+ <button type="submit">重启此进程</button>
+</form>
+</div>
+</body>
+</html>

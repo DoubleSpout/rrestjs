@@ -1,0 +1,53 @@
+include include/head 
+body
+ #wrap
+   include include/top
+   .i_b_w
+       .i_b_p.clearfix
+         .p_l_t 新手入门教程
+         include include/nav
+         .p_m.clearfix
+           h2.forange rrestjs超简单新手入门教程
+           p rrestjs v0.6版本已经发出了，整体性能和API代码风格还是很令我满意的，自夸一下嘿嘿，虽然已经很简单易用了，但是我还是要为想尝试rrestjs框架的朋友写一份超级简单的入门教程，并且将来我将持续更新rrestjs哦。
+           p 现在我们就开始rrestjs框架之旅吧，如果您有幸用过expressjs，那以下绝对能令你超乎想像的轻松和简单。
+           p 
+            b step1、搭建环境
+            <br/>rrestjs目前仅在linux系统下测试通过，windows一直没有时间去测试，所以暂且定义您用的是linux系统，并且您需要先安装好一份版本号高于0.6.6的node.js，同时如果您想要使用rrestjs的全部功能，您还需要安装好mongodb 2.0以上版本，当然mongodb并不是必须的。   	    
+           p 
+            b step2、下载安装rrestjs
+            <br/>您可以去上面的github项目地址下载最新的rrestjs框架；
+            <br/>也可以执行： npm install rrestjs  然后  npm update rrestjs
+            <br/>这样您就安装了最新版本的rrestjs框架了，写本文的时候是v0.4版本   
+           p 
+            b step3、配置rrestjs
+            <br/>我们可以写一个简单小例子来将rrestjs运行起来，您需要先在您的linux系统下创建一个文件夹，我们暂命名为hello。
+            <br/>然后再在文件夹内建立一个配置文件文件夹，我们暂定为config，并在其文件夹内创建一个config.js文件。
+            <br/>紧接着你可以打开以下网址:
+            a.lighta(target="_blank", href="https://github.com/DoubleSpout/rrestjs/blob/master/config/example_config.js") https://github.com/DoubleSpout/rrestjs/blob/master/config/example_config.js
+            <br/>或者打开/node_modules/rrestjs/config/example_config.js将其代码复制粘贴到刚刚创建的config.js文件中，这样就完成了我们整个rrestjs的配置拉。 
+           p 
+            b step4、hellow world every one
+            <br/>最后让我们一起来创建一个简单的应用，当用户访问config.js中的端口，我们给它响应一个hello world吧！
+            <br/>在hello文件夹下创建一个app.js文件，还记得hello文件夹吗？就是我们在step3创建的哦。
+            <br/>然后将以下代码copy到app.js中，
+            <br/>再运行 $node app.js 就可以去浏览器敲地址访问拉！
+            <br/>示例代码：
+           pre
+            |module.exports.conf = require('./config/config');//详细说明见github上 
+            |var http = require('http'),
+            |rrest = require('rrestjs'),
+            |server = http.createServer(rrest(function (req, res){//完全原生的node.js手册代码风格，没有学习门槛
+            |         res.send('hello world everyone!'); //rrestjs封装了一个res.send方法，用来响应客户端的请求
+            |})).listen(rrest.config.listenPort);//读取配置文件的监听端口号，只需修改配置文件即可轻松部署
+           p 怎么样，无论是配置还是代码风格都要比express简单和易懂不少吧，具体的配置文件说明我想在您拷贝config.js文件时已经看到了很多详细的注释了，有什么问题您可以发电子邮件给我：snoopyxdy@163.com 或者 qq：53822985 (加好友请注明哦)
+           p 
+            b extra、额外的小惊喜
+            <br/>在您正常运行上述这个例子后，您觉得每次大家都输出 ‘hello world’ 太没有个性了，您想要输出一点有个性的，于是您用您超级漂亮的编辑器将app.js的代码 ‘hello world’ 改成了 ‘ fuck world’。然后您将屏幕切换至ssh窗口，准备按下ctrl+c，终止app.js进程然后重启，因为node.js是单进程的，所以有任何代码的改动都必须手动的去重启node.js进程。
+            <br/>但是！！但是！！请您高抬贵手，先不要按ctrl+c，将窗口切换至浏览器，点一下刷新。您发现了屏幕输出了 ’fuck world‘ 了
+            <br/>这就是rrestjs内置的clusterplus模块，算是捆绑销售吧，他将让您的开发更加轻松。
+           p 
+            b the end、roa & restful
+            <br/>那赶快去看本站源码，深入研究rrestjs吧
+            a.lighta(href="https://github.com/DoubleSpout/rrestjs/tree/master/app", target="_blank") 本站源码
+   include include/foot
+   include include/comjs

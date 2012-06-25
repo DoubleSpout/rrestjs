@@ -1,0 +1,4 @@
+@charset 'UTF-8';
+/* reset */
+body{font-size:12px;line-height:1.5;font-family:Tahoma,Verdana,SimSun,sans-serif;background:#d5dae0;}
+#div { background:url(evo.jpg) no-repeat; width:500px; height:500px;}

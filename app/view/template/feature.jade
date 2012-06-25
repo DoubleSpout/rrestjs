@@ -1,0 +1,129 @@
+include include/head 
+body
+ #wrap
+   include include/top
+   .i_b_w
+       .i_b_p.clearfix
+         .p_l_t.yellowbg 功能列表
+         include include/nav
+         .p_m.clearfix
+           h2.fyellow rrestjs功能一览表
+           p 
+             table(border="0",cellspacing="0",cellpadding="0")
+               tr
+                 td(width="40%") 功能
+                 td.forange(width="60%") rrestjs
+               tr
+                 td(width="40%") 架构思路
+                 td(width="60%") ROA，面向资源架构
+               tr
+                 td(width="40%") 封装程度
+                 td(width="60%") 轻度封装，配置简单，最小化污染命名空间，易于2次开发
+               tr
+                 td(width="40%") 自定义开发、生产环境
+                 td(width="60%") 加载不同配置文件
+               tr
+                 td(width="40%") http,https服务器
+                 td(width="60%") 原生node.js API支持
+               tr
+                 td(width="40%") Favicon
+                 td(width="60%") 根据配置自动处理/favicon请求
+               tr
+                 td(width="40%") IP过滤访问
+                 td(width="60%") ip黑白名单，访问路径白名单
+               tr
+                 td(width="40%") 静态文件
+                 td(width="60%") 自动响应静态文件
+               tr
+                 td(width="40%") 请求路由
+                 td(width="60%") Restful风格，拼装URI
+               tr
+                 td(width="40%") 404、500
+                 td(width="60%") 出错自动响应404、500
+               tr
+                 td(width="40%") Get参数
+                 td(width="60%") req.getparam获取get请求的参数对象
+               tr
+                 td(width="40%") DEL参数
+                 td(width="60%") req.delparam获取get请求的参数对象
+               tr
+                 td(width="40%") POST参数
+                 td(width="60%") req.postparam获取get请求的参数对象
+               tr
+                 td(width="40%") PUT参数
+                 td(width="60%") req.putparam获取get请求的参数对象
+               tr
+                 td(width="40%") 文件上传
+                 td(width="60%") req.file获取上传的文件对象
+               tr
+                 td(width="40%") 简单session
+                 td(width="60%") 支持内存存取session
+               tr
+                 td(width="40%") 多进程session
+                 td(width="60%") 支持多进程存储session同步共享
+               tr
+                 td(width="40%") 数据库session
+                 td(width="60%") 支持mongodb存储session，并且无需修改代码
+               tr
+                 td(width="40%") 客户端IP地址
+                 td(width="60%") req.ip获取客户端请求地址
+               tr
+                 td(width="40%") request封装
+                 td(width="60%") 对request对象进行封装
+               tr
+                 td(width="40%") response封装
+                 td(width="60%") 对response对象进行封装
+               tr
+                 td(width="40%") json
+                 td(width="60%") 可以直接res.json响应json字符串
+               tr
+                 td(width="40%") delate,gzip
+                 td(width="60%") 根据配置文件可以对响应进行delate和gzip压缩
+               tr
+                 td(width="40%") 缓存
+                 td(width="60%") etag,last modify, cache
+               tr
+                 td(width="40%") 模版
+                 td(width="60%") jade, ejs
+               tr
+                 td(width="40%") 模版缓存
+                 td(width="60%") 模版静态缓存，分页缓存多张
+               tr
+                 td(width="40%") 日志功能
+                 td(width="60%") log4js，可以分等级分大小
+               tr
+                 td(width="40%") 多进程
+                 td(width="60%") 内置ClusterPlus，可以多进程监听多端口任务
+               tr
+                 td(width="40%") 容错
+                 td(width="60%") 可以自动重启挂掉的子进程，并且还是监听之前的端口，做之前的事情
+               tr
+                 td(width="40%") 高效开发
+                 td(width="60%") 让开发者像php那样开发node.js文件，免去频繁手动重启的麻烦
+               tr
+                 td(width="40%") 数据库连接封装
+                 td(width="60%") 利用mongodb-native封装了mongodb数据库的连接，只需配置自动连接，同时支持IP端口连接和字符串连接
+               tr
+                 td(width="40%") 数据库连接池
+                 td(width="60%") 增加连接池的概念，防止数据库因过多连接而奔溃，同时可以提高db连接速度
+               tr
+                 td(width="40%") css和js
+                 td(width="60%") 整合压缩css和js，让请求更少，效率更高
+               tr
+                 td(width="40%") less
+                 td(width="60%") 支持lesscss的前端css样式表
+               tr
+                 td(width="40%") 自动加载模块
+                 td(width="60%") 根据配置自动加载指定文件夹下的模块，保存在rrestjs.mod对象中
+               tr
+                 td(width="40%") 自动部署
+                 td(width="60%") 会根据配置文件自动在baseDir目录下生成各类缓存静态文件目录
+               tr
+                 td(width="40%") 检测
+                 td(width="60%") 在启动应用的时候，将自动检测配置文件是否完好合法，加快开发者debug速度
+             
+
+
+
+   include include/foot
+   include include/comjs

@@ -1,0 +1,373 @@
+include include/head 
+body
+ #wrap
+   include include/top
+   .i_b_w
+       .i_b_p.clearfix
+         .p_l_t.yellowbg 性能测试
+         include include/nav
+         .p_m.clearfix
+           h2.fyellow rrestjs、expressjs和node.js性能对比测试
+           p 
+             | <br/>Node.js服务器配置：
+             | <br/>Cpu：Intel(R) Xeon(R) E5620 2.4GHZ (8 cpus )
+             | <br/>Mem：6G
+             | <br/>System：linux 2.6.8 64bit
+           p
+             | <br/>Ab和webbench测试服务器：（和node.js服务器非一台服务器）
+             | <br/>Cpu：Intel(R) Xeon(R) E5620 2.4GHZ (8 cpus )
+             | <br/>Mem：6G
+             | <br/>System：linux 2.6.8 64bit
+           p
+             | <br/>Node版本：0.6.6
+             | <br/>网络环境：内网
+           p 
+             b 第一项 “HELLO WORLD”：
+             | 打开8个node.js进程，三种情况（裸奔node.js，expressjs框架，rrestjs框架）分别输出hello world 字符串，测试其响应速度。
+           p AB测试结果（50000个请求）
+             table(border="0",cellspacing="0",cellpadding="0")
+               tr
+                 td
+                 td(colspan="3") 1000并发
+                 td(colspan="3") 3000并发
+                 td(colspan="3") 5000并发
+               tr
+                 td
+                 td node
+                 td Express
+                 td rrestjs
+                 td node
+                 td Express
+                 td rrestjs
+                 td node
+                 td Express
+                 td rrestjs
+               tr
+                 td.forange RPS
+                 td.forange 23075
+                 td.forange 18452
+                 td.forange 20734
+                 td.forange 14309
+                 td.forange 12049
+                 td.forange 12505
+                 td.forange 10603
+                 td.forange 7977
+                 td.forange 8972
+               tr
+                 td TPQ
+                 td 0.043
+                 td 0.054
+                 td 0.048
+                 td 0.083
+                 td 0.083
+                 td 0.08
+                 td 0.94
+                 td 0.125
+                 td 0.11
+               tr
+                 td 80%req
+                 td 37
+                 td 36
+                 td 35
+                 td 215
+                 td 244
+                 td 210
+                 td 467
+                 td 562
+                 td 539
+               tr
+                 td FAIL
+                 td 0
+                 td 0
+                 td 0
+                 td 0
+                 td 0
+                 td 0
+                 td 0
+                 td 0
+                 td 0
+           p webbench测试结果（连续发送15秒）
+             table(border="0",cellspacing="0",cellpadding="0")
+               tr
+                 td
+                 td(colspan="3") 1000并发
+                 td(colspan="3") 3000并发
+                 td(colspan="3") 5000并发
+               tr
+                 td
+                 td node
+                 td Express
+                 td rrestjs
+                 td node
+                 td Express
+                 td rrestjs
+                 td node
+                 td Express
+                 td rrestjs
+               tr
+                 td RPM
+                 td 1953712
+                 td 1396972
+                 td 1526956
+                 td 1960020
+                 td 1414220
+                 td 1532160
+                 td 1966660
+                 td 1425380
+                 td 1538268
+               tr
+                 td RPS
+                 td.forange 32561
+                 td.forange 23282
+                 td.forange 25449
+                 td.forange 32667
+                 td.forange 23570
+                 td.forange 25536
+                 td.forange 32777
+                 td.forange 23756
+                 td.forange 25637
+               tr
+                 td FAIL
+                 td 0
+                 td 0
+                 td 0
+                 td 0
+                 td 0
+                 td 0
+                 td 0
+                 td 0
+                 td 0
+           p 
+             b 第二项 “INDEX.HTML”：
+             | 打开8个node.js进程，三种情况（裸奔node.js，expressjs框架，rrestjs框架）分别输出静态小文件index.html(内容为带head以及body标签的hello world)，测试其响应速度。
+           p AB测试结果（50000个请求）
+             table(border="0",cellspacing="0",cellpadding="0")
+               tr
+                 td
+                 td(colspan="3") 1000并发
+                 td(colspan="3") 3000并发
+                 td(colspan="3") 5000并发
+               tr
+                 td
+                 td node
+                 td Express
+                 td rrestjs
+                 td node
+                 td Express
+                 td rrestjs
+                 td node
+                 td Express
+                 td rrestjs
+               tr
+                 td.forange RPS
+                 td.forange 15471
+                 td.forange 9555
+                 td.forange 10411
+                 td.forange 12017
+                 td.forange 9467
+                 td.forange 10134
+                 td.forange 8583
+                 td.forange 8199
+                 td.forange 8369
+               tr
+                 td TPQ
+                 td 0.065
+                 td 0.105
+                 td 0.096
+                 td 0.085
+                 td 0.107
+                 td 0.099
+                 td 0.117
+                 td 0.122
+                 td 0.119
+               tr
+                 td 80%req
+                 td 94
+                 td 326
+                 td 203
+                 td 280
+                 td 409
+                 td 374
+                 td 570
+                 td 688
+                 td 626
+               tr
+                 td FAIL
+                 td 0
+                 td 0
+                 td 0
+                 td 0
+                 td 0
+                 td 0
+                 td 0
+                 td 0
+                 td 0
+           p webbench测试结果（连续发送15秒）
+             table(border="0",cellspacing="0",cellpadding="0")
+               tr
+                 td
+                 td(colspan="3") 1000并发
+                 td(colspan="3") 3000并发
+                 td(colspan="3") 5000并发
+               tr
+                 td
+                 td node
+                 td Express
+                 td rrestjs
+                 td node
+                 td Express
+                 td rrestjs
+                 td node
+                 td Express
+                 td rrestjs
+               tr
+                 td RPM
+                 td 935288
+                 td 584108
+                 td 630288
+                 td 926596
+                 td 573024
+                 td 608440
+                 td 917464
+                 td 560936
+                 td 590700
+               tr
+                 td RPS
+                 td.forange 15588
+                 td.forange 9735
+                 td.forange 10504
+                 td.forange 15443
+                 td.forange 9550
+                 td.forange 10140
+                 td.forange 15291
+                 td.forange 9348
+                 td.forange 9845
+               tr
+                 td FAIL
+                 td 0
+                 td 0
+                 td 0
+                 td 0
+                 td 0
+                 td 0
+                 td 0
+                 td 0
+                 td 0
+           p 
+             b 第三项 “INDEX.JADE”：
+             | 打开8个node.js进程，三种情况（expressjs框架，rrestjs框架，rrestjs开启jade缓存）分别输出jade动态模版index.jade(内容为hello world)，测试其响应速度。
+           p AB测试结果（50000个请求）
+             table(border="0",cellspacing="0",cellpadding="0")
+               tr
+                 td
+                 td(colspan="3") 1000并发
+                 td(colspan="3") 3000并发
+                 td(colspan="3") 5000并发
+               tr
+                 td
+                 td node
+                 td Express
+                 td rrestjs
+                 td node
+                 td Express
+                 td rrestjs
+                 td node
+                 td Express
+                 td rrestjs
+               tr
+                 td.forange RPS
+                 td.forange 10609
+                 td.forange 12584
+                 td.forange 11772
+                 td.forange 9483
+                 td.forange 10440
+                 td.forange 11236
+                 td.forange 7858
+                 td.forange 8009
+                 td.forange 8619
+               tr
+                 td TPQ
+                 td 0.094
+                 td 0.079
+                 td 0.085
+                 td 0.105
+                 td 0.096
+                 td 0.089
+                 td 0.127
+                 td 0.123
+                 td 0.116
+               tr
+                 td 80%req
+                 td 74
+                 td 74
+                 td 161
+                 td 237
+                 td 211
+                 td 317
+                 td 586
+                 td 564
+                 td 578
+               tr
+                 td FAIL
+                 td 0
+                 td 0
+                 td 0
+                 td 0
+                 td 0
+                 td 0
+                 td 0
+                 td 0
+                 td 0
+           p webbench测试结果（连续发送15秒）
+             table(border="0",cellspacing="0",cellpadding="0")
+               tr
+                 td
+                 td(colspan="3") 1000并发
+                 td(colspan="3") 3000并发
+                 td(colspan="3") 5000并发
+               tr
+                 td
+                 td node
+                 td Express
+                 td rrestjs
+                 td node
+                 td Express
+                 td rrestjs
+                 td node
+                 td Express
+                 td rrestjs
+               tr
+                 td RPM
+                 td 655956
+                 td 877344
+                 td 786784
+                 td 662544
+                 td 883540
+                 td 767468
+                 td 661304
+                 td 880640
+                 td 746332
+               tr
+                 td RPS
+                 td.forange 10932
+                 td.forange 14622
+                 td.forange 13113
+                 td.forange 11042
+                 td.forange 14725
+                 td.forange 12791
+                 td.forange 11021
+                 td.forange 14677
+                 td.forange 12438
+               tr
+                 td FAIL
+                 td 0
+                 td 0
+                 td 0
+                 td 0
+                 td 0
+                 td 0
+                 td 0
+                 td 0
+                 td 0
+   include include/foot
+   include include/comjs

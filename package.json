@@ -1,0 +1,58 @@
+{
+  "author": {
+    "name": "doublespout",
+    "email": "snoopyxdy@163.com",
+    "url": "http://snoopyxdy.blog.163.com"
+  },
+  "name": "rrestjs",
+  "description": "HIgh performance node.js ROA & RESTFUL web framework.",
+  "keywords": [
+    "rrestjs",
+    "restful",
+    "webframework",
+    "nodejs framework",
+    "express",
+    "expressjs",
+    "ROA",
+    "high performance"
+  ],
+  "version": "0.7.2",
+  "url": "http://www.rrestjs.com",
+  "homepage": "http://www.rrestjs.com",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/DoubleSpout/rrestjs.git"
+  },
+  "main": "index.js",
+  "engines": {
+    "node": ">=0.6.6"
+  },
+  "dependencies": {
+    "formidable": "1.0.8",
+    "generic-pool": "1.0.6",
+    "jade": "0.20.0",
+    "log4js": "0.3.9",
+    "mime": "1.2.4",
+    "mongodb": "0.9.7-3-5",
+    "socket.io": "0.8.7",
+    "uglify-js": "1.2.5",
+    "ejs": "0.6.1",
+    "less": "1.2.2",
+    "should": "0.6.0"
+  },
+  "devDependencies": {},
+  "_npmUser": {
+    "name": "doublespout",
+    "email": "snoopyxdy@163.com"
+  },
+  "_id": "rrestjs@0.6.18",
+  "optionalDependencies": {},
+  "_engineSupported": true,
+  "_npmVersion": "1.1.21",
+  "_nodeVersion": "v0.6.18",
+  "_defaultsLoaded": true,
+  "dist": {
+    "shasum": "857570a3b52bc80a4c57f6ab3b9b1c698151a6d5"
+  },
+  "_from": "rrestjs"
+}

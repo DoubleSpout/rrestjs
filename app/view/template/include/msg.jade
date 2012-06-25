@@ -1,0 +1,17 @@
+-msg.forEach(function(msgi){
+ p.i_i.i_p(id="#{msgi._id}")
+   a(href="#{msgi.gr}",title="点击查看大头像",target="_blank")
+     img.gr(width="20",height="20",src="#{msgi.gr}")
+   strong #{msgi.name}
+   font #{msgi.time}
+   <br/>
+   | #{msgi.content}
+   a.bt(href="javascript:;", aid="#{msgi._id}", name="reply") 回复
+   <br>
+ -msgi.reply.forEach(function(msgri){
+   i.m_rec
+    strong(name="#{msgri._id}") #{msgri.name}
+    | #{msgri.content}
+   <br/>
+  -})
+-})

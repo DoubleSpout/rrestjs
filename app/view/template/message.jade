@@ -1,0 +1,42 @@
+include include/head 
+body
+ #wrap
+   include include/top
+   .i_b_w
+       .i_b_p.clearfix
+         .p_l_t.bluebg 留言
+         include include/nav
+         .p_m.clearfix.p_message
+           h2.fblue 留言
+           p 留言板是基于node.js和mongodb制作，支持
+             a.lighta(href="http://en.gravatar.com", target="_blank") gravatar
+             | 头像，请您在留言时， 输入您的email哦，本站会予以保密滴！
+           form(method="get", action="/message/")
+             p 
+               span.fyellow 搜索作者：
+                 input#sname.m_i_i.sname(autocomplete="off", maxlength="15",  value="", name="sname" )	            
+            -if(total>0)
+             include include/msg.jade
+             p#state.i_i 共有 #{total} 篇留言，
+               a#getmore.bt(href="javascript:;") 查看更多留言
+            -else 
+             p.i_i 暂无留言
+           form#send(action="/message/send", method="GET")
+             p.i_i.sub
+               |邮箱：
+               input#name(autocomplete="off", maxlength="45", value="#{email}",  name="name")
+               <br/>
+               |内容：
+               input#content(autocomplete="off", maxlength="145", value="",name="content")
+               <br/>
+               span#captitle
+               <br/>
+               span#capimg
+               <br/>
+               a.bt#ajaxsub(href="javascript:;" ,style="display:none;") 提交
+               input.none(type="submit",value="提交")
+               input#pid(type="hidden", autocomplete="off", value="0",name="pid")
+               input#poid(type="hidden", value="", id="poid", name="poid")
+               input#po(type="hidden", value="", id="po", name="po")
+   include include/foot
+   script(type="text/javascript",src="/static/?parse=/static/js/jquery.1.6.2.js|/static/js/base.js|/static/js/msg.js")

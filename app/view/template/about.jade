@@ -1,0 +1,26 @@
+include include/head 
+body
+ #wrap
+   include include/top
+   .i_b_w
+       .i_b_p.clearfix
+         .p_l_t 了解rrestjs
+         include include/nav
+         .p_m.clearfix
+           h2.forange 了解rrestjs
+           p rrestjs是在expressjs代码的基础上开发的node.js框架（这样可以减少很多bug，同时要感谢expressjs作者visionmedia无私的奉献），不过整个框架结构已经完全改变了，属性以及方法定义也是全新的，可以说是一个全新的node.js开发框架（不仅局限于web页面的输出）。
+           p rrestjs命名源自：ROA-Restful，面向资源和restful是rrestjs的宗旨，和expressjs不同的是expressjs是利用路由机制的，而rrestjs则完全根据用户请求的uri去找寻控制器，本站就是利用rrestjs框架开发的。
+             a.lighta(href="https://github.com/DoubleSpout/rrestjs", target="_blank") github上本站源码及API
+           p rrestjs有如下几个突出优点：
+             | <br/>1、高性能，相对于原生的node.js性能测试结果大约下降15%
+             | <br/>2、友好的api，原生node.js风格，开放给用户请求主入口
+             | <br/>3、简单的配置，具有配置文件，可以很方便的进行部署，加载不同的配置文件可以切换开发和生产环境
+             | <br/>4、restful风格，去掉了route路由表，不仅提升了响应请求的速度，整个应用还更容易扩展和维护
+             | <br/>5、session加强，多进程内存存储session同步共享，生产环境支持mongodb存储，2者切换无需改动代码，只需改下配置
+             | <br/>6、多进程增强，仅需配置即可开启多进程模式，而且子进程意外挂掉，会自动重启
+             | <br/>7、更易开发，无须每次 ctrl+c 然后 上+enter，监听指定文件夹(包括其子文件)，当发生文件改变自动重启子进程
+             | <br/>8、数据库连接池，封装了mongodb的数据库连接池，方便高效的操作mongodb数据库
+             | <br/>9、增加日志系统，利用log4js可以根据需要分级，分文件的存储日志
+             | <br/>10、整合压缩js和css，内置了压缩整合js和css的功能，同时支持less，开发网站得到最大的优化
+   include include/foot
+   include include/comjs

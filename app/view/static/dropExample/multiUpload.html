@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>html5 dragfile</title>
+
+<style> 
+body {background-color:#74b1d1;}
+#dropbox {width:100%; min-height:200px;background-color:#ccc; border:#777 1px solid;display:block; margin:10px auto;float:left;}
+.perblock {float:left; margin:20px; border:#c00 1px dashed;}
+#thumb {width:200px; height:200px;display:block; float:left; margin-left:50px;}
+button{margin:20px;}
+
+</style>
+</head>
+ <body>
+ <h1>可以直接拖拽文件进来，也可以选择文件</h1>
+ <input type="file" id="file" multiple="true" />
+ <button id="upload">上传</button>
+	<div id="dropbox">
+	
+	
+	</div>
+
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="/skin/dropExample/dropfile.js"></script>
+<script src="/skin/dropExample/demo2.js"></script>
+</body>
+</html>
+

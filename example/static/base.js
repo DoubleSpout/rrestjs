@@ -1,0 +1,1 @@
+alert('auto response base.js.自动响应');
