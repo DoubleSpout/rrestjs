@@ -14,6 +14,10 @@
 
   利用rrestjs框架搭建的一个基于mongodb和nodejs的个人小站，有jade模版输出和留言板的小应用，代码在本例 app 文件夹中。
 
+##案例演示网址：http://www.wujb.net
+   
+   wujb.net是一个基于rrestjs框架开发的，node.js和mongodb搭建的个人博客小站，有好友，私信，喜欢等功能
+
 ##新手入门教程
  
   手把手教程： http://snoopyxdy.blog.163.com/blog/static/60117440201211743031517/
