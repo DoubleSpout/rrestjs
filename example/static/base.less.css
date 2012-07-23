@@ -1,5 +1,5 @@
 @color: #4D926F;
-
+@import "import/body.less.css";
 #header {
   color: @color;
 }
