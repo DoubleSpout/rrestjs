@@ -1,5 +1,7 @@
 # rrestjs —— HIgh performance node.js ROA  RESTFUL  web framework
 
+  已经全面支持node v0.8.3版本，请放心使用	  
+
   rrestjs是一款基于expressjs代码开发的高性能node.js开发框架，由于重新编写了框架组织架构，比expressjs整体性能提升大约10%，实用功能也更加丰富，API和代码风格相比expressjs更简单易懂。
 
   rrestjs简单工作流程如下： 
