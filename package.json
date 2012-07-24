@@ -16,7 +16,7 @@
     "ROA",
     "high performance"
   ],
-  "version": "0.7.3",
+  "version": "0.7.4",
   "url": "http://www.rrestjs.com",
   "homepage": "http://www.rrestjs.com",
   "repository": {
@@ -45,14 +45,14 @@
     "name": "doublespout",
     "email": "snoopyxdy@163.com"
   },
-  "_id": "rrestjs@0.6.18",
+  "_id": "rrestjs@0.7.3",
   "optionalDependencies": {},
   "_engineSupported": true,
   "_npmVersion": "1.1.21",
   "_nodeVersion": "v0.6.18",
   "_defaultsLoaded": true,
   "dist": {
-    "shasum": "857570a3b52bc80a4c57f6ab3b9b1c698151a6d5"
+    "shasum": "f99557102451f29823886b08b891e4747009106d"
   },
   "_from": "rrestjs"
 }
