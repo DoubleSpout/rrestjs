@@ -12,6 +12,8 @@ var http = require('http'),
 					res.write('req.referer or req.referrer:'+req.referer+'<br />');
 					res.write('req.useragent:'+req.useragent+'<br />');
 					res.write('req.getparam:'+JSON.stringify(req.getparam)+'<br />');
+					res.write('req.queryparam:'+JSON.stringify(req.queryparam)+'<br />');
+					res.write('req.bodyparam:'+JSON.stringify(req.bodyparam)+'<br />');	
 					res.write('req.deleteparam:'+JSON.stringify(req.deleteparam)+'<br />');
 					res.write('req.postparam:'+JSON.stringify(req.postparam)+'<br />');
 					res.write('req.putparam:'+JSON.stringify(req.putparam)+'<br />');
@@ -29,6 +31,8 @@ var http = require('http'),
 					res.write('req.referer or req.referrer:'+req.referer+'<br />');
 					res.write('req.useragent:'+req.useragent+'<br />');
 					res.write('req.getparam:'+JSON.stringify(req.getparam)+'<br />');
+					res.write('req.queryparam:'+JSON.stringify(req.queryparam)+'<br />');
+					res.write('req.bodyparam:'+JSON.stringify(req.bodyparam)+'<br />');	
 					res.write('req.deleteparam:'+JSON.stringify(req.deleteparam)+'<br />');
 					res.write('req.postparam:'+JSON.stringify(req.postparam)+'<br />');
 					res.write('req.putparam:'+JSON.stringify(req.putparam)+'<br />');
