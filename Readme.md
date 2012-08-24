@@ -157,9 +157,11 @@
   Request.useragent: 客户端浏览器信息, 可以从中捕获IPAD或IPHONE用户等等;
   
   Request.getparam: 客户端请求get参数的对象, 比如客户端通过get请求发送了一个name=spout, 获取方法为: Request.getparam.name; //spout
-
-  Request.deleteparam: 客户端请求get参数的对象, 比如客户端通过get请求发送了一个name=spout, 获取方法为: Request.getparam.name; //spout
   
+  Request.queryparam: 无关http请求的方法，获取url上的参数
+
+  Request.bodyparam: 无关http请求的方法，获取请求body里的内容
+
   Request.postparam: 客户端请求的post参数对象,获取方法同上，如果是上传文件的，这里不能获取;
   
   Request.putparam: 客户端请求的put参数对象,获取方法同上，如果是上传文件的，这里不能获取;
