@@ -1,0 +1,5 @@
+.DS_Store
+.git*
+node_modules
+gmon.out
+node_modules

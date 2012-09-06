@@ -9,9 +9,11 @@ module.exports = {
 //cluster配置
 	isCluster:true, //是否开启多进程集群
 	isClusterAdmin:true,//进程监听管理功能是否开启
-	CLusterLog:false,//是否打开cluster自带的控制台信息，生产环境建议关闭
+	CLusterLog:true,//是否打开cluster自带的控制台信息，生产环境建议关闭
 	adminListenPort:20910,//管理员监听端口号
 	adminAuthorIp:/^10.1.49.223$/,//允许访问管理的IP地址
 	ClusterNum:4, //开启的进程数
 	ClusterReload:'/example',//只有当进程数为1时，进入开发模式，可以监听此文件夹下的改动，包括子文件夹，不用重复 ctrl+c 和 上键+enter		
+	Heartbeat:2000,
+	ClusterMaxMemory:100
 }

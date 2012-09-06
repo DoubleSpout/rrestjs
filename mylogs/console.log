@@ -1,0 +1,12 @@
+[2012-07-24 21:51:07.605] [DEBUG] rrestjs - rrestjs process 10592 Checking config file starting...
+[2012-07-24 21:51:07.608] [DEBUG] rrestjs - rrestjs process 10592 Config file checking complete, errors:0/68, warns:0/68
+[2012-07-24 21:51:07.937] [DEBUG] rrestjs - debug
+[2012-07-24 21:51:07.937] [INFO] rrestjs - info
+[2012-07-24 21:51:07.938] [WARN] rrestjs - warn
+[2012-07-24 21:51:07.938] [ERROR] rrestjs - error
+[2012-07-24 21:51:25.657] [DEBUG] rrestjs - rrestjs process 10596 Checking config file starting...
+[2012-07-24 21:51:25.661] [DEBUG] rrestjs - rrestjs process 10596 Config file checking complete, errors:0/68, warns:0/68
+[2012-07-24 21:51:25.976] [DEBUG] rrestjs - debug
+[2012-07-24 21:51:25.977] [INFO] rrestjs - info
+[2012-07-24 21:51:25.977] [WARN] rrestjs - warn
+[2012-07-24 21:51:25.977] [ERROR] rrestjs - error

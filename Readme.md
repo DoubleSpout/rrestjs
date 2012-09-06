@@ -32,7 +32,7 @@
 
   2、直接从github上打包下载  
 
-##框架介绍：目前是0.7.0版本，unstable版本
+##框架介绍：目前是0.8.0版本，unstable版本，近期推出v1.0版本，包括大量的test测试代码
  
   社区文章： http://club.cnodejs.org/topic/4f16442ccae1f4aa27001039
 
@@ -48,6 +48,8 @@
 
   v0.7升级博客(新增局部配置功能)：http://snoopyxdy.blog.163.com/blog/static/6011744020125733812506/
 
+  v0.8升级博客(修复bug和新增不少功能)：http://snoopyxdy.blog.163.com/blog/static/60117440201286300974/
+	
 ##性能测试：
 
   性能测试地址，对比node.js, expressjs和rrestjs: http://snoopyxdy.blog.163.com/blog/static/6011744020120135424340/
@@ -73,8 +75,6 @@
 
 	})).listen(rrest.config.listenPort);
 
-
-  目前是v0.4版本, 未经过严格测试, 目前仅供学习参考
 
 
 ##开发建议：
@@ -174,6 +174,8 @@
  
   Request.delsession():摧毁session方法, 摧毁当前的sessionid;
 
+  Request.isxhr:根据是否为ajax的请求返回布尔值
+
 ##Response: response对象，是ServerResponse的一个实例
    
   Response.cache(type, maxAge): 设置请求缓存头，让浏览器对此uri请求缓存,type: public, private等, maxAge: 缓存的时间,单位毫秒; 
@@ -198,7 +200,7 @@
 
   Response.cookiep3p(): 设置cookieP3P头(注:未经严格测试);
 
-  Response.redirect(url): 跳转到指定的url地址, 少用此功能;
+  Response.redirect(url, [statuscode]): 跳转到指定的url地址, 少用此功能;statuscode有3种，301永久跳转，302临时跳转，303资源移动，当url为"back"时，自动根据referr来调回，如果没有，则跳转到网站更目录'/'
 
   Response.render(template, [pageNumber, options, callback]):目前仅支持jade和ejs模版，ejs和jade输出API相同，输出jade模版, template:'模版相对config设置中模版地址的地址', 比如模版地址设置为:'/temp/jade', 则输出'/user/index.jade'就相当于输出了'/temp/jade/user/index.jade', options: 传入jade模版的对象, callback: 模版输出回调两个参数err, jadestring, pageNumber的作用是分页缓存，将页面或其他唯一标识发送给模版，让其生成不同缓存，解决不同分页显示同一模版的bug,
         
@@ -220,6 +222,22 @@
   
   Response.compiletemp(template, [pageNumber, options, callback]):用法同Response.render，只是这个方法callback返回(err, htmlString)，只返回编译过后的html字符串，无论出错err与否都不会自动响应客户端的请求，
 
+##proxy反向代理和http代理功能
+ 
+  rrestjs默认加载 node-http-proxy 用来让node做代理服务器，完全无缝贴合，这也和rrestjs坚持使用原生的node.js的API有关
+
+  require('rrestjs').proxy = require('http-proxy');我们只需要使用  require('rrestjs').proxy 即可使用 http-proxy 所有功能
+  
+  具体api使用方法见：https://github.com/nodejitsu/node-http-proxy
+
+##tploption: rrestjs模版的默认传参对象
+
+  require('rrestjs').tploption 所有res.render()方法中都会传递给模版这个对象，如果有重复则以render方法的为准，但不会覆盖全局的tploption。
+
+##csrf防御
+
+  默认如果开启session，则会在模版编译输出时在<form>表单中默认添加<input name="_csrf" />，并且在session中也会添加session._csrf，开发者可以根据比对这2者是否匹配来确定是否合法。
+
 ##AutoRequire: 自动加载 /modules 文件夹中的模块, 可以在config配置文件中详细配置开启或者例外
 
   require('rrestjs').mod['文件名']: 文件名会自动将后缀.js去掉, 例如在modules/as.js模块自动加载进来, 使用方法:  require('rrestjs').mod['as'];
@@ -238,7 +256,7 @@
 
         下面是一段删除留言及其回复的mongodb数据库操作代码
 
-      	mongo(function(err, db, release){//操作mongodb数据库
+      	mongo(function(err, db, release, genid){//操作mongodb数据库
 
 		if(err) return;//注意:这里只需return，如果有err，rrestjs会自动执行release()，归还连接至连接池!
 		
@@ -246,7 +264,7 @@
 			
 			if(err) return release();//注意：如果出错，这里需要您手动执行release()，归还连接至连接池!
 			
-			col.remove({$or:[{_id:get_id(db, id)}, {pid:id}]},function(err, r){//删除id并且将回复一并删除
+			col.remove({$or:[{_id:genid(id)}, {pid:id}]},function(err, r){//删除id并且将回复一并删除,genid生成object的_id
 				
 				release();//操作完毕执行归还连接
 				
@@ -269,6 +287,76 @@
   
   require('rrestjs').mpool(callback, [priority ]): genricpool方法, acquire.mpool(callback, priority )表示去连接池中获取一个连接,priority 表示优先级, callback接收2个参数err, db;无论err与否, 都需要mpool.release(db); 归还连接到连接池。建议使用上面的mongo方法。
   
+##clientpipe模块，v0.9.0新增模块打通了前后端，使后端的一些模块可以供前端直接调用
+
+  require('rrestjs').clientpipe就可以访问这个功能了，rrest.clientpipe 利用socket.io 和 now.js 组合封装而成。
+
+  使用方法：后端利用 require('rrestjs').clientpipe.addsyn 和 require('rrestjs').clientpipe.addasy 同步和异步注册方法。
+
+  当然目前默认提供一些方法，比如fileread，可以让客户端直接读取服务端的文件，request让客户端跨域发送各种请求，包括post也可以自定http头，和使用node.js的httprequest模块一模一样。
+  
+     clientpipe.addsyn('md5', function(str){//后端注册一个同步md5的方法
+
+	   var crypto = require('crypto');
+
+	   var shasum = crypto.createHash('md5');
+
+	   shasum.update(str);
+
+	   return shasum.digest('hex');
+
+     });
+
+     
+     clientpipe.addasy('get', function(url, asyback){//注册一个异步的get方法
+
+		var http=require('http');
+
+			http.get(url, function(res){
+
+				var body = '';
+
+				res.on('data', function (chunk) {
+
+					 body += chunk;
+
+				 });
+
+				 res.on('end', function(){
+
+					asyback(null, {headers:res.headers, statusCode:res.statusCode, data:body});
+				 });
+
+			}).on('error', function(e) {
+
+				asyback('get request error');
+
+		});
+
+	});
+
+
+  而我们在客户端只需要如下代码即可跨域请求和生成md5字符串
+  
+            <script src="/static/rrestpipe.js"></script>//加载客户端的rrestpipe.js
+
+	    rrestpipe.ready(function(){//当rrestpipe准备完毕
+	    
+		rrestpipe.pipe("md5", "abcd", function(err, md5str){
+		
+			alert(md5str);
+		
+		})	   
+	    
+		rrestpipe.pipe("get", "http://www.nodejs.org", function(err, res){
+		
+			alert(res.data);//这里返回的是对象
+		
+		})
+	    
+	    });
+
+
 ##restlog: 全局变量, 日志对象详细配置, 例如是否开启, 如何分级, 如何切分可在config文件中详细配置
 
   restlog.info(errmsg): 等级info日志, 测试用, 生产环境建议开启error等级
@@ -302,6 +390,11 @@
 
 	NotAllow:'No permission!', //禁止访问响应给客户端的信息
 
+##ClusterPlus心跳以及内存监控
+
+  如果将config文件中的Heartbeat和ClusterMaxMemory设置成相应的数值，则会开启心跳和内存监控功能，当主进程失去对子进程的心跳超过3次，自动重启子进程。
+
+  当子进程内存超过指定数量时，自动重启子进程，所以这个值建议不要设置过低。
 
 ##ClusterPlus
  

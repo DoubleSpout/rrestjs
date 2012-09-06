@@ -31,6 +31,8 @@ module.exports = {
 	adminAuthorIp:/^127.0.0.1$/,//允许访问管理的IP地址
 	ClusterNum:1, //开启的进程数
 	ClusterReload:'/controller',//只有当进程数为1时，进入开发模式，可以监听此文件夹下的改动，包括子文件夹，不用重复 ctrl+c 和 上键+enter		
+	Heartbeat:false, //各个子进程和master进程之间的心跳间隔时间，如果为false表示不进行心跳检测，如果为1000表示每秒进行心跳检测，如果主进程没有收到子进程心跳，则会kill掉此子进程重新打开，防止子进程卡死，建议设置为1-5分钟。
+	ClusterMaxMemory:false,//各个子进程最大的消耗内存数，如果超过这个上限则会记录错误日志，并且重启该子进程，设置为false表示不检测。建议设置为200MB以上
 //静态文件配置
 	statciMaxAge : 86400000*7, //静态文件的缓存周期，建议设置为7天
 	staticGetOnly : true, //静态是否只能通过get获取
@@ -81,4 +83,6 @@ module.exports = {
 	ExceptIP:/^127.0.0.1$/, //正则表达式，匹配成功表示此IP可以正常访问,白名单
 	ExceptPath:[],//例外的路径，如果用户访问这个url路径，无论在不在ip过滤列表中，都可以正常使用，白名单才能使用
 	NotAllow:'No permission!', //禁止访问响应给客户端的信息
+//客户端跨域功能
+	isClientPipe:false,//如果为true，则提供给客户端跨域请求的功能
 }

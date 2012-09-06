@@ -10,7 +10,7 @@ var htmlstr = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "h
 			  '<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />'+
 			  '<script src="/static/js.js" type="text/javascript"></script>'+
 			  '<link href="/static/base.css" type="text/css" rel="stylesheet" />'+
-			  '<link href="/static/base.less.css" type="text/css" rel="stylesheet" />'+
+			  '<link href="/static/base.less" type="text/css" rel="stylesheet" />'+
 			  '<title>jsonp</title>'+
 			  '</head><body>'+
 			  '一个自动输出静态文件的例子'+
