@@ -196,7 +196,7 @@
   
   Response.clearcookie(name): 清除指定名称的cookie值 
 
-  Response.cookie(name, val, [options]): 设置客户端cookie, 名/值, options:{maxAge:过期时间(毫秒), path:'/', httponly:true, domain:域名, secure:false(https上传输)};(注: 这里修正了expressjs的一个bug, 如需设置多个cookie, 多次调用此方法)
+  Response.cookie(name, val, [options]): 设置客户端cookie, 名/值, options:{maxAge:过期时间(毫秒), path:'/', httpOnly:true, domain:域名, secure:false(https上传输)};(注: 这里修正了expressjs的一个bug, 如需设置多个cookie, 多次调用此方法)
 
   Response.cookiep3p(): 设置cookieP3P头(注:未经严格测试);
 
@@ -233,6 +233,11 @@
 ##tploption: rrestjs模版的默认传参对象
 
   require('rrestjs').tploption 所有res.render()方法中都会传递给模版这个对象，如果有重复则以render方法的为准，但不会覆盖全局的tploption。
+
+  例如 require('rrestjs').tploption.name = '123';//定义全局的模版变量
+
+  也可以 require('rrestjs').tploption.name = function(req, res){return req.session.username;}; //函数接受req，res两个参数，并且return值输出给模版
+
 
 ##csrf防御
 

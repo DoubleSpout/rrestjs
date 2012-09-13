@@ -17,4 +17,6 @@ var http = require('http'),
 			});
 		}
 	})).listen(rrest.config.listenPort);
-	rrest.tploption.names = ['123', '456', '789']
+	rrest.tploption.names = function(req, res){
+					return [JSON.stringify(req.headers), '456', '789']
+	}
