@@ -1,8 +1,10 @@
 /*
 	基本测试，request 例子
+	测试response，tploption，session的_csrf功能
 */
 var should = require('should');
 var path = require('path');
+var testconf = require('./testconf.js');
 module.exports.rrestjsconfig = {
 	listenPort:3000,
 	baseDir: path.join(__dirname)};
@@ -26,7 +28,7 @@ var http = require('http'),
 var zlib = require('zlib');
 var unzip = zlib.createUnzip();
 var request  = 	http.request({
-		host:'192.168.11.66',
+		host:testconf.hostname,
 		port:3000,
 		path:'/user/face/save/uid/123456?myquery1=1&myquery2=2',
 		method:'POST',

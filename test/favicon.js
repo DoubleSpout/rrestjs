@@ -3,6 +3,7 @@
 */
 var should = require('should');
 var path = require('path');
+var testconf = require('./testconf.js');
 module.exports.rrestjsconfig = {
 	listenPort:3000,
 	baseDir: path.join(__dirname),
@@ -22,7 +23,7 @@ var http = require('http'),
 
 var fs = require('fs');
 var fav = fs.readFileSync('./static/favicon.ico', 'hex');
-http.get('http://192.168.11.66:3000/static/favicon.ico', function(res){
+http.get('http://'+testconf.hostname+':3000/static/favicon.ico', function(res){
 	var body='';
 	res.on('data', function (chunk) {
 		body += chunk.toString('hex');
