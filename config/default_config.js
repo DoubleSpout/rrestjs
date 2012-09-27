@@ -22,6 +22,7 @@ module.exports = {
 	staticParseMaxNumber:10,//整合压缩css或js文件的最大上限，建议不要超过15
 	uploadFolder:'/tmp/upload', //文件上传的临时目录
 	postLimit:1024*1024*100,//限制上传的postbody大小，单位byte
+	connectTimeout:false,//限制客户端连接的时间，false为永远不超时，1000表示客户端和服务端1秒内没活跃则自动切断客户端连接
 	autoRouter:false,//自动路由，如果为false则表示关闭，如果为'/controller'，则表示默认去controller里寻找文件及方法，例如用户访问/user/face ，去回去controller文件下找到user.js执行face的方法传入req,res对象
 //cluster配置
 	isCluster:false, //是否开启多进程集群
@@ -53,7 +54,7 @@ module.exports = {
 //logger log4js 配置
 	isLog:false, //是否开启日志，过多的记录日志会影响性能，但是能记录系统运行情况
 	logLevel:'debug',//['trace','debug','info','warn','error', 'fatal'] 日志等级
-	logPath:'/mylogs/console.log', // "/mylogs/console.log" 日志存放目录
+	logPath:'/mylogs', // "/mylogs" 日志存放目录
 	logMaxSize:1024*1024*10, //单个日志文件大小
 	logFileNum:10, //当单个日志文件大小达标时，自动切分，这里设置最多切分多少个日志文件
 //Template

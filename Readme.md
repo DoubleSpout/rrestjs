@@ -1,3 +1,6 @@
+[![Build Status](https://secure.travis-ci.org/DoubleSpout/rrestjs.png?branch=master)](http://travis-ci.org/DoubleSpout/rrestjs)
+
+
 # rrestjs —— HIgh performance node.js ROA  RESTFUL  web framework
 
   已经全面支持node v0.8.3版本，请放心使用	  
@@ -507,3 +510,34 @@
       asarray.push(asall); //将最终汇总函数存入数组
 
       var total = as.ap.apply(as, asarray);//as.ap方法是入口，参数规则  异步函数1, 异步函数2 ... 回调函数, 这里利用apply调用参数不定长的as.ap方法，此方法将返回一个inter型的total, 表示总共需要返回total个异步处理。
+
+
+## 授权协议
+
+基于MIT协议发布：
+
+```
+Copyright (c) 2012 Lei Zongmin(吴中骅) <snoopyxdy@gmail.com>
+http://www.rrestjs.com
+
+The MIT License
+
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+"Software"), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+```
