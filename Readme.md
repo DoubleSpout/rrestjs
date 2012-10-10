@@ -53,6 +53,8 @@
 
   v0.8升级博客(修复bug和新增不少功能)：http://snoopyxdy.blog.163.com/blog/static/60117440201286300974/
 	
+  v0.9升级博客(修复bug，增加手动路由功能)：http://snoopyxdy.blog.163.com/blog/static/60117440201291025549630/
+
 ##性能测试：
 
   性能测试地址，对比node.js, expressjs和rrestjs: http://snoopyxdy.blog.163.com/blog/static/6011744020120135424340/
@@ -179,6 +181,8 @@
 
   Request.isxhr:根据是否为ajax的请求返回布尔值
 
+  Request.param 会将所有客户端发送过来的参数，不论get或者post等的参数放入这个对象。如果出现重名则file>post>get
+
 ##Response: response对象，是ServerResponse的一个实例
    
   Response.cache(type, maxAge): 设置请求缓存头，让浏览器对此uri请求缓存,type: public, private等, maxAge: 缓存的时间,单位毫秒; 
@@ -224,6 +228,36 @@
 	注：此方法当出错时自动响应err页面
   
   Response.compiletemp(template, [pageNumber, options, callback]):用法同Response.render，只是这个方法callback返回(err, htmlString)，只返回编译过后的html字符串，无论出错err与否都不会自动响应客户端的请求，
+
+##0.9版本新增手动路由（类似expressjs）
+
+  用户可以再config.js新增这样的设置：
+
+
+      manualRouter:{
+        
+	"get:/user/face":function(req, res){res.send('change face')},
+        
+	"post:put:/user/info":function(req, res){res.send('get not access!')},
+        
+	"/user/all":function(req, res){
+       
+	    if(!req.session.count) req.session.count = 0
+            
+	     res.send('all can access!'+(req.session.count++));
+         
+	  },
+
+       }
+
+     
+  设置规则：method:method:url
+
+  注意：url必须是“/”开头的。
+  
+  如果不加method则表示该 url 接受任何方式的 http 请求
+     
+
 
 ##proxy反向代理和http代理功能
  

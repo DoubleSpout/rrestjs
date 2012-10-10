@@ -3,6 +3,7 @@ var http = require('http'),
 	util = require('util'),
 	rrest = require('../'),
     server = http.createServer(rrest(function (req, res) {
+		console.log(req.bodyparam)
 			if(req.method === 'POST'){
 					res.write('<body>');
 					res.write(formstr)

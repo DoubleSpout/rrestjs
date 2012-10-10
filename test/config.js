@@ -9,3 +9,12 @@ var rrest = require('../');
 
 should.strictEqual(rrest.config, rrestconfig);
 console.log('test done!');
+process.exit();
+
+
+
+
+
+
+
+

@@ -1,0 +1,75 @@
+/*
+	基本测试，req.param 的例子
+*/
+var should = require('should');
+var request = require('request');
+var path = require('path');
+var testconf = require('./testconf.js');
+module.exports.rrestjsconfig = {
+	listenPort:3000,
+	tempSet:'ejs',
+	tempFolder :'/static',
+	postLimit:1024*1024*10,
+    connectTimeout:1000,
+	baseDir: path.join(__dirname),
+};
+
+
+var http = require('http');
+var	rrest = require('../');
+var   server = http.createServer(rrest(function (req, res){
+		if(req.path[0] == 'upload2'){
+			delete req.param.my_file.path;
+			delete req.param.my_file.lastModifiedDate
+			res.sendjson(req.param)
+		}		
+	})).listen(rrest.config.listenPort);
+
+//设置全局的模版option
+http.globalAgent.maxSockets = 10;
+
+var fs = require('fs');
+var i = 1;
+var r = 0
+var result = function(name){
+	var num = ++r;
+	console.log('%s test done, receive %d/%d', name, num, i);
+	if(num>=i){
+		console.log('response.js test done.')
+		process.exit();
+	}
+}
+
+var png = fs.readFileSync(path.join(__dirname, '/static/octocat.png'));
+var len = (new Buffer(png)).length;
+
+
+var from = request({
+method:'post',
+uri:'http://'+testconf.hostname+':3000/upload2?number=123&getnumber=123',
+headers:{
+	/*"content-length":500*/
+}
+}, function(error,res,body){
+	should.strictEqual(body, '{"number":"456","getnumber":"123","postnumber":"123","my_file":{"size":9311,"name":"octocat.png","type":"image/png","hash":false,"length":9311,"filename":"octocat.png","mime":"image/png"}}')
+	result('req.param')
+}).form()
+from.append('number','456')
+from.append('postnumber','123')
+from.append('my_file', fs.createReadStream(path.join(__dirname, '/static/octocat.png')));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

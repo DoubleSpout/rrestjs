@@ -7,7 +7,6 @@ var path = require('path');
 var testconf = require('./testconf.js');
 module.exports.rrestjsconfig = {
 	listenPort:3000,
-	autoRouter:'/controller',
 	baseDir: path.join(__dirname),
 	IPfirewall:true, //是否开启IP过滤，开启会影响性能。
 	BlackList:false,//如果是true，表示下面这些是黑名单，如果是false，表示下面这些是白名单，路径设置优先级大于IP
@@ -17,7 +16,7 @@ module.exports.rrestjsconfig = {
 	};
 var http = require('http'),
 	rrest = require('../'),
-    server = http.createServer(rrest(function (req, res){
+    server = http.createServer(rrest(function(req, res){
 		res.send('get it')
 	})).listen(rrest.config.listenPort);
 
@@ -30,7 +29,7 @@ var result = function(name){
 	var num = ++r;
 	console.log('%s test done, receive %d/%d', name, num, i);
 	if(num>=i){
-		console.log('autorouter.js test done.')
+		console.log('iptables1.js whitelist test done.')
 		process.exit();
 	}
 }

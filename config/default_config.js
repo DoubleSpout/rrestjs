@@ -23,6 +23,7 @@ module.exports = {
 	uploadFolder:'/tmp/upload', //文件上传的临时目录
 	postLimit:1024*1024*100,//限制上传的postbody大小，单位byte
 	connectTimeout:false,//限制客户端连接的时间，false为永远不超时，1000表示客户端和服务端1秒内没活跃则自动切断客户端连接
+	manualRouter:false,//手动路由，可以在这里设置手动路由的对象，详细见manualRouter.js
 	autoRouter:false,//自动路由，如果为false则表示关闭，如果为'/controller'，则表示默认去controller里寻找文件及方法，例如用户访问/user/face ，去回去controller文件下找到user.js执行face的方法传入req,res对象
 //cluster配置
 	isCluster:false, //是否开启多进程集群

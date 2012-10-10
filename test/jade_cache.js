@@ -1,5 +1,5 @@
 /*
-	基本测试，jade 模版 测试 例子
+	基本测试，jade 模版 静态缓存 测试 例子
 */
 var should = require('should');
 var request = require('request');
@@ -10,6 +10,8 @@ module.exports.rrestjsconfig = {
 	tempSet:'jade',
 	tempFolder :'/static',
 	baseDir: path.join(__dirname),
+	tempHtmlCache:true,
+	tempCacheFolder:'/tmp/template',
 };
 
 var chtml='';
@@ -29,13 +31,8 @@ var http = require('http'),
 		else if(pname === '/b'){
 			res.render('/jade.jade', {"name":'hello world'});
 		}
-		else if(pname === '/c'){
-			res.render('/jade.jade',function(err, html){
-				chtml = html;
-			});
-		}
 		else if(pname === '/d'){
-			res.render('/jade.jade', {"name":'hello world'}, function(err, html){
+			res.render('/jade.jade',  function(err, html){
 				dhtml = html;
 			});
 		}
@@ -47,16 +44,6 @@ var http = require('http'),
 				fhtml = html;
 			});
 		}
-		else if(pname === '/g'){
-			res.compiletemp('/jade.jade', function(err, html){
-				res.sendjson({'data':html});
-			});
-		}
-		else if(pname === '/h'){
-			res.compiletemp('/jade.jade', 3, {"name":'hello world'}, function(err, html){
-				res.sendjson({'data':html});
-			});
-		}
 	})).listen(rrest.config.listenPort);
 
 //设置全局的模版option
@@ -66,13 +53,13 @@ rrest.tploption.usersex = 'male';
 
 http.globalAgent.maxSockets = 10;
 
-var i = 8;
+var i = 5;
 var r = 0
 var result = function(name){
 	var num = ++r;
 	console.log('%s test done, receive %d/%d', name, num, i);
 	if(num>=i){
-		console.log('jade.js test done.')
+		console.log('jade_cache.js test done.')
 		process.exit();
 	}
 }
@@ -87,42 +74,32 @@ uri:'http://'+testconf.hostname+':3000/a',
 });
 
 
-
+setTimeout(function(){
 request({
 method:'get',
 uri:'http://'+testconf.hostname+':3000/b',
 }, function(error, res, body){
 	should.strictEqual(res.statusCode, 200);
-	should.strictEqual(body, 'hello world\n192.168.11.66\nmale\n<form></form>')
+	should.strictEqual(body, 'rrestjs default\n192.168.11.66\nmale\n<form></form>')
 	result('/b request')
 });
+},100);
 
 
-request({
-method:'get',
-uri:'http://'+testconf.hostname+':3000/c',
-}, function(error, res, body){
-	should.strictEqual(res.statusCode, 200);
-	should.strictEqual(body, 'rrestjs default\n192.168.11.66\nmale\n<form></form>');
-	setTimeout(function(){
-		should.strictEqual(chtml, 'rrestjs default\n192.168.11.66\nmale\n<form></form>');
-		result('/c request')
-	},100)
-	
-});
-
+setTimeout(function(){
 request({
 method:'get',
 uri:'http://'+testconf.hostname+':3000/d',
 }, function(error, res, body){
 	should.strictEqual(res.statusCode, 200);
-	should.strictEqual(body, 'hello world\n192.168.11.66\nmale\n<form></form>');
+	should.strictEqual(body, 'rrestjs default\n192.168.11.66\nmale\n<form></form>');
 	setTimeout(function(){
-		should.strictEqual(dhtml, 'hello world\n192.168.11.66\nmale\n<form></form>');
+		should.strictEqual(dhtml, 'rrestjs default\n192.168.11.66\nmale\n<form></form>');
 		result('/d request')
 	},100)
-	
 });
+},100);
+
 
 request({
 method:'get',
@@ -147,20 +124,3 @@ uri:'http://'+testconf.hostname+':3000/f',
 	},100)
 });
 
-request({
-method:'get',
-uri:'http://'+testconf.hostname+':3000/g',
-}, function(error, res, body){
-	should.strictEqual(res.statusCode, 200);
-	should.strictEqual(body, '{\"data\":\"rrestjs default\\n192.168.11.66\\nmale\\n<form></form>\"}');
-	result('/g request')
-});
-
-request({
-method:'get',
-uri:'http://'+testconf.hostname+':3000/h',
-}, function(error, res, body){
-	should.strictEqual(res.statusCode, 200);
-	should.strictEqual(body, '{\"data\":\"hello world\\n192.168.11.66\\nmale\\n<form></form>\"}');
-	result('/h request')
-});

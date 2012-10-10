@@ -51,8 +51,7 @@ var request  = 	http.request({
 				});
 			unzip.on('end', function(chunk) {
 					should.strictEqual(body, 'hello wrold');
-					should.strictEqual(res.headers['content-length'], 'hello wrold'.length+'');
-					should.strictEqual(res.headers['server'], 'rrestjs / 0.8.1');
+					should.strictEqual(res.headers['content-length'], '31');
 					should.strictEqual(res.headers['x-powered-by'], 'node.js');
 					console.log('req.js test done!');
 					process.exit();

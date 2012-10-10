@@ -23,7 +23,7 @@ var http = require('http'),
 //设置全局的模版option
 rrest.tploption.userid = function(req,res){return req.ip};
 rrest.tploption.name = 'rrestjs default';
-rrest.tploption.sex = 'male';
+rrest.tploption.usersex = 'male';
 
 http.globalAgent.maxSockets = 10;
 

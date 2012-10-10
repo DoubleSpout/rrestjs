@@ -30,7 +30,7 @@ var result = function(name){
 	var num = ++r;
 	console.log('%s test done, receive %d/%d', name, num, i);
 	if(num>=i){
-		console.log('autorouter.js test done.')
+		console.log('iptables2.js blacklist test done.')
 		process.exit();
 	}
 }
