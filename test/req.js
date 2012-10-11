@@ -13,7 +13,7 @@ var http = require('http'),
     server = http.createServer(rrest(function (req, res){
 
 		should.strictEqual(req.path.join(), ['user', 'face', 'save', 'uid', '123456'].join());
-		should.strictEqual(req.ip, '192.168.11.66');
+		should.strictEqual(req.ip, testconf.hostname);
 		should.strictEqual(req.referer, 'http://www.cnodejs.org/');
 		should.strictEqual(req.referrer, req.referer);
 		should.strictEqual(req.useragent, 'node.js-v0.8.8');

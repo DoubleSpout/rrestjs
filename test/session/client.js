@@ -1,11 +1,12 @@
 var http = require('http');
 var should = require('should');
+var testconf = require('../testconf.js');
 var cookies = '';
 var i = 0;
 var gorequest= function(param_cookie){
 		var me = arguments.callee;
 		var request  = 	http.request({
-				host:'192.168.11.66',
+				host:testconf.hostname,
 				port:3000,
 				path:'/',
 				method:'GET',

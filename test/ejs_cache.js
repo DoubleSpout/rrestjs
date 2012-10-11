@@ -69,7 +69,7 @@ method:'get',
 uri:'http://'+testconf.hostname+':3000/a',
 }, function(error, res, body){
 	should.strictEqual(res.statusCode, 200);
-	should.strictEqual(body, '<li>rrestjs default</li><li>192.168.11.66</li><li>male</li><form></form>')
+	should.strictEqual(body, '<li>rrestjs default</li><li>'+testconf.hostname+'</li><li>male</li><form></form>')
 	result('/a request')
 });
 
@@ -80,10 +80,10 @@ method:'get',
 uri:'http://'+testconf.hostname+':3000/b',
 }, function(error, res, body){
 	should.strictEqual(res.statusCode, 200);
-	should.strictEqual(body, '<li>rrestjs default</li><li>192.168.11.66</li><li>male</li><form></form>')
+	should.strictEqual(body, '<li>rrestjs default</li><li>'+testconf.hostname+'</li><li>male</li><form></form>')
 	result('/b request')
 });
-},100);
+},200);
 
 
 setTimeout(function(){
@@ -92,13 +92,13 @@ method:'get',
 uri:'http://'+testconf.hostname+':3000/d',
 }, function(error, res, body){
 	should.strictEqual(res.statusCode, 200);
-	should.strictEqual(body, '<li>rrestjs default</li><li>192.168.11.66</li><li>male</li><form></form>');
+	should.strictEqual(body, '<li>rrestjs default</li><li>'+testconf.hostname+'</li><li>male</li><form></form>');
 	setTimeout(function(){
-		should.strictEqual(dhtml, '<li>rrestjs default</li><li>192.168.11.66</li><li>male</li><form></form>');
+		should.strictEqual(dhtml, '<li>rrestjs default</li><li>'+testconf.hostname+'</li><li>male</li><form></form>');
 		result('/d request')
 	},100)
 });
-},100);
+},200);
 
 
 request({
@@ -106,7 +106,7 @@ method:'get',
 uri:'http://'+testconf.hostname+':3000/e',
 }, function(error, res, body){
 	should.strictEqual(res.statusCode, 200);
-	should.strictEqual(body, '<li>rrestjs default</li><li>192.168.11.66</li><li>hello world</li><form></form>');
+	should.strictEqual(body, '<li>rrestjs default</li><li>'+testconf.hostname+'</li><li>hello world</li><form></form>');
 	result('/e request')
 	
 });
@@ -117,9 +117,9 @@ method:'get',
 uri:'http://'+testconf.hostname+':3000/f',
 }, function(error, res, body){
 	should.strictEqual(res.statusCode, 200);
-	should.strictEqual(body, '<li>rrestjs default</li><li>192.168.11.66</li><li>male</li><form></form>');
+	should.strictEqual(body, '<li>rrestjs default</li><li>'+testconf.hostname+'</li><li>male</li><form></form>');
 	setTimeout(function(){
-		should.strictEqual(fhtml, '<li>rrestjs default</li><li>192.168.11.66</li><li>male</li><form></form>');
+		should.strictEqual(fhtml, '<li>rrestjs default</li><li>'+testconf.hostname+'</li><li>male</li><form></form>');
 		result('/f request')
 	},100)
 });

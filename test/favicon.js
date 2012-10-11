@@ -11,9 +11,9 @@ module.exports.rrestjsconfig = {
 	};
 var http = require('http'),
 	rrest = require('../'),
-    server = http.createServer(rrest(function (req, res){
+    server = http.createServer(function (req, res){
 		res.send('hello wrold');
-	})).listen(rrest.config.listenPort);
+	}).listen(rrest.config.listenPort);
 
 
 

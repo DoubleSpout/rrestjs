@@ -18,13 +18,13 @@ module.exports.rrestjsconfig = {
 
 var http = require('http');
 var	rrest = require('../');
-var server = http.createServer(rrest(function (req, res){
+var server = http.createServer(function (req, res){
 		//console.log(req.pathname)
 		if(req.pathname === '/'){
-			res.send('hello world') 
+			res.send('hello world');
 			return false;
 		}	
-	})).listen(rrest.config.listenPort);
+	}).listen(rrest.config.listenPort);
 
 http.globalAgent.maxSockets = 10;
 
@@ -35,7 +35,7 @@ var result = function(name){
 	var num = ++r;
 	console.log('%s test done, receive %d/%d', name, num, i);
 	if(num>=i){
-		console.log('manal.js test done.')
+		console.log('manual.js test done.')
 		process.exit();
 	}
 }
@@ -47,7 +47,7 @@ uri:'http://'+testconf.hostname+':3000/',
 }, function(error, res, body){
 	should.strictEqual(res.statusCode, 200);
 	should.strictEqual(body, 'hello world')
-	result('root post')
+	result('root post');
 }).form().append('my_field', 'my_value');
 
 

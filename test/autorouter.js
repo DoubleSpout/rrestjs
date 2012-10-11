@@ -11,9 +11,9 @@ module.exports.rrestjsconfig = {
 	baseDir: path.join(__dirname)};
 var http = require('http'),
 	rrest = require('../'),
-    server = http.createServer(rrest(function (req, res){
+    server = http.createServer(function (req, res){
 		if(req.path[0]==='user' && req.path[1] === 'info')	return res.send('come on')&&true
-	})).listen(rrest.config.listenPort);
+	}).listen(rrest.config.listenPort);
 
 
 

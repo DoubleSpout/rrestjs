@@ -74,11 +74,11 @@
 
       rrest = require('rrest'),
 
-      server = http.createServer(rrest(function (req, res) {
+      server = http.createServer(function (req, res) {
 
 		res.send('hello world');
 
-	})).listen(rrest.config.listenPort);
+	}).listen(rrest.config.listenPort);
 
 
 
@@ -95,7 +95,7 @@
 	 
 	    rrest = require('rrestjs'),
 
-	    server = http.createServer(rrest(function (req, res){//这里是主入口，可以根据您的需要自由添加一些东西，而express并没有对用户开放主入口
+	    server = http.createServer(function (req, res){//这里是主入口，可以根据您的需要自由添加一些东西，而express并没有对用户开放主入口
 
 		try{
 
@@ -113,7 +113,7 @@
 
 		}
 
-	    })).listen(rrest.config.listenport);//监听配置文件的设置的端口，如果要修改或者读取配置文件的内容，请用 rrest.config;
+	    }).listen(rrest.config.listenport);//监听配置文件的设置的端口，如果要修改或者读取配置文件的内容，请用 rrest.config;
 
           rrest = rrest; //升级rrest为全局变量
 
@@ -444,7 +444,7 @@
 
   require('rrestjs').listen(server, [port||portarray])：让rrestjs来监听端口，如果您想让多个node.js进程监听多个不同端口，只需将server实例和[3000, 3001, 3002 ..]这样的端口数组传入此方法，如果不传参数，则默认第二个参数是config文件的 listenPort 属性。
 
-  require('rrestjs').id：一个从0开始的整数，当开启Cluster后，每一个node.js子进程会具有这个属性。
+  require('rrestjs').child.id：一个从0开始的整数，当开启Cluster后，每一个node.js子进程会具有这个属性。
   
   可以在配置文件config中详细配置ClusterPlus的各项功能：
 
@@ -475,11 +475,11 @@
 
 	    port = [3000, 3001, 3002, 3003],
 
-	    server = http.createServer(rrest(function (req, res){
+	    server = http.createServer(function (req, res){
 
 			res.send('process '+rrest.id+' is listen at '+port[rrest.id]+' : hello world everyone!');
 
-	    }));
+	    });
 
 	rrest.listen(server, port);//这里如果不传port参数，则自动去读config.listenPort;
 
@@ -493,11 +493,11 @@
 
 	    rrest = require('rrestjs'),
 
-	    server = http.createServer(rrest(function (req, res){
+	    server = http.createServer(function (req, res){
 
 		res.send('process '+rrest.id+' is listen at '+port[rrest.id]+' : hello world everyone!');
 
-	    })).listen(rrest.config.listenPort);//读取配置文件的监听端口号，必须这么写，只需修改配置文件即可轻松部署
+	    }).listen(rrest.config.listenPort);//读取配置文件的监听端口号，必须这么写，只需修改配置文件即可轻松部署
   
   
 ##AsyncProxy

@@ -21,7 +21,7 @@ var fhtml = '';
 var http = require('http'),
 	rrest = require('../'), 
 	i=0,
-    server = http.createServer(rrest(function (req, res) {
+    server = http.createServer(function (req, res) {
 		var pname = req.pathname;
 		if(pname === '/a'){
 			res.render('/ejs.ejs');
@@ -57,7 +57,7 @@ var http = require('http'),
 				res.sendjson({'data':html});
 			});
 		}
-	})).listen(rrest.config.listenPort);
+	}).listen(rrest.config.listenPort);
 
 //设置全局的模版option
 rrest.tploption.userid = function(req,res){return req.ip};
@@ -82,7 +82,7 @@ method:'get',
 uri:'http://'+testconf.hostname+':3000/a',
 }, function(error, res, body){
 	should.strictEqual(res.statusCode, 200);
-	should.strictEqual(body, '<li>rrestjs default</li><li>192.168.11.66</li><li>male</li><form></form>')
+	should.strictEqual(body, '<li>rrestjs default</li><li>'+testconf.hostname+'</li><li>male</li><form></form>')
 	result('/a request')
 });
 
@@ -93,7 +93,7 @@ method:'get',
 uri:'http://'+testconf.hostname+':3000/b',
 }, function(error, res, body){
 	should.strictEqual(res.statusCode, 200);
-	should.strictEqual(body, '<li>hello world</li><li>192.168.11.66</li><li>male</li><form></form>')
+	should.strictEqual(body, '<li>hello world</li><li>'+testconf.hostname+'</li><li>male</li><form></form>')
 	result('/b request')
 });
 
@@ -103,9 +103,9 @@ method:'get',
 uri:'http://'+testconf.hostname+':3000/c',
 }, function(error, res, body){
 	should.strictEqual(res.statusCode, 200);
-	should.strictEqual(body, '<li>rrestjs default</li><li>192.168.11.66</li><li>male</li><form></form>');
+	should.strictEqual(body, '<li>rrestjs default</li><li>'+testconf.hostname+'</li><li>male</li><form></form>');
 	setTimeout(function(){
-		should.strictEqual(chtml, '<li>rrestjs default</li><li>192.168.11.66</li><li>male</li><form></form>');
+		should.strictEqual(chtml, '<li>rrestjs default</li><li>'+testconf.hostname+'</li><li>male</li><form></form>');
 		result('/c request')
 	},100)
 	
@@ -116,9 +116,9 @@ method:'get',
 uri:'http://'+testconf.hostname+':3000/d',
 }, function(error, res, body){
 	should.strictEqual(res.statusCode, 200);
-	should.strictEqual(body, '<li>hello world</li><li>192.168.11.66</li><li>male</li><form></form>');
+	should.strictEqual(body, '<li>hello world</li><li>'+testconf.hostname+'</li><li>male</li><form></form>');
 	setTimeout(function(){
-		should.strictEqual(dhtml, '<li>hello world</li><li>192.168.11.66</li><li>male</li><form></form>');
+		should.strictEqual(dhtml, '<li>hello world</li><li>'+testconf.hostname+'</li><li>male</li><form></form>');
 		result('/d request')
 	},100)
 	
@@ -129,7 +129,7 @@ method:'get',
 uri:'http://'+testconf.hostname+':3000/e',
 }, function(error, res, body){
 	should.strictEqual(res.statusCode, 200);
-	should.strictEqual(body, '<li>rrestjs default</li><li>192.168.11.66</li><li>hello world</li><form></form>');
+	should.strictEqual(body, '<li>rrestjs default</li><li>'+testconf.hostname+'</li><li>hello world</li><form></form>');
 	result('/e request')
 	
 });
@@ -140,9 +140,9 @@ method:'get',
 uri:'http://'+testconf.hostname+':3000/f',
 }, function(error, res, body){
 	should.strictEqual(res.statusCode, 200);
-	should.strictEqual(body, '<li>rrestjs default</li><li>192.168.11.66</li><li>male</li><form></form>');
+	should.strictEqual(body, '<li>rrestjs default</li><li>'+testconf.hostname+'</li><li>male</li><form></form>');
 	setTimeout(function(){
-		should.strictEqual(fhtml, '<li>rrestjs default</li><li>192.168.11.66</li><li>male</li><form></form>');
+		should.strictEqual(fhtml, '<li>rrestjs default</li><li>'+testconf.hostname+'</li><li>male</li><form></form>');
 		result('/f request')
 	},100)
 });
@@ -152,7 +152,7 @@ method:'get',
 uri:'http://'+testconf.hostname+':3000/g',
 }, function(error, res, body){
 	should.strictEqual(res.statusCode, 200);
-	should.strictEqual(body, '{\"data\":\"<li>rrestjs default</li><li>192.168.11.66</li><li>male</li><form></form>\"}');
+	should.strictEqual(body, '{\"data\":\"<li>rrestjs default</li><li>'+testconf.hostname+'</li><li>male</li><form></form>\"}');
 	result('/g request')
 });
 
@@ -161,6 +161,6 @@ method:'get',
 uri:'http://'+testconf.hostname+':3000/h',
 }, function(error, res, body){
 	should.strictEqual(res.statusCode, 200);
-	should.strictEqual(body, '{\"data\":\"<li>hello world</li><li>192.168.11.66</li><li>male</li><form></form>\"}');
+	should.strictEqual(body, '{\"data\":\"<li>hello world</li><li>'+testconf.hostname+'</li><li>male</li><form></form>\"}');
 	result('/h request')
 });

@@ -69,7 +69,7 @@ method:'get',
 uri:'http://'+testconf.hostname+':3000/a',
 }, function(error, res, body){
 	should.strictEqual(res.statusCode, 200);
-	should.strictEqual(body, 'rrestjs default\n192.168.11.66\nmale\n<form></form>')
+	should.strictEqual(body, 'rrestjs default\n'+testconf.hostname+'\nmale\n<form></form>')
 	result('/a request')
 });
 
@@ -80,7 +80,7 @@ method:'get',
 uri:'http://'+testconf.hostname+':3000/b',
 }, function(error, res, body){
 	should.strictEqual(res.statusCode, 200);
-	should.strictEqual(body, 'rrestjs default\n192.168.11.66\nmale\n<form></form>')
+	should.strictEqual(body, 'rrestjs default\n'+testconf.hostname+'\nmale\n<form></form>')
 	result('/b request')
 });
 },100);
@@ -92,9 +92,9 @@ method:'get',
 uri:'http://'+testconf.hostname+':3000/d',
 }, function(error, res, body){
 	should.strictEqual(res.statusCode, 200);
-	should.strictEqual(body, 'rrestjs default\n192.168.11.66\nmale\n<form></form>');
+	should.strictEqual(body, 'rrestjs default\n'+testconf.hostname+'\nmale\n<form></form>');
 	setTimeout(function(){
-		should.strictEqual(dhtml, 'rrestjs default\n192.168.11.66\nmale\n<form></form>');
+		should.strictEqual(dhtml, 'rrestjs default\n'+testconf.hostname+'\nmale\n<form></form>');
 		result('/d request')
 	},100)
 });
@@ -106,7 +106,7 @@ method:'get',
 uri:'http://'+testconf.hostname+':3000/e',
 }, function(error, res, body){
 	should.strictEqual(res.statusCode, 200);
-	should.strictEqual(body, 'rrestjs default\n192.168.11.66\nhello world\n<form></form>');
+	should.strictEqual(body, 'rrestjs default\n'+testconf.hostname+'\nhello world\n<form></form>');
 	result('/e request')
 	
 });
@@ -117,9 +117,9 @@ method:'get',
 uri:'http://'+testconf.hostname+':3000/f',
 }, function(error, res, body){
 	should.strictEqual(res.statusCode, 200);
-	should.strictEqual(body, 'rrestjs default\n192.168.11.66\nmale\n<form></form>');
+	should.strictEqual(body, 'rrestjs default\n'+testconf.hostname+'\nmale\n<form></form>');
 	setTimeout(function(){
-		should.strictEqual(fhtml, 'rrestjs default\n192.168.11.66\nmale\n<form></form>');
+		should.strictEqual(fhtml, 'rrestjs default\n'+testconf.hostname+'\nmale\n<form></form>');
 		result('/f request')
 	},100)
 });
