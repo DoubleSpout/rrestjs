@@ -69,7 +69,7 @@ var ajs =  file.readFileSync(__dirname+'/static/a.js', 'utf-8');
 var bjs =  file.readFileSync(__dirname+'/static/b.js', 'utf-8');
 var png =  file.readFileSync(__dirname+'/static/octocat.png', 'utf-8');
 
-getfn('/static/a.js', function(res, body){
+getfn('/static/js1/js2/js3/a.js', function(res, body){
 	var js = file.readFileSync(__dirname+'/static/a.js', 'utf-8');
 	should.strictEqual(res.statusCode, 200);
 	should.strictEqual(res.headers['content-type'], 'application/javascript');

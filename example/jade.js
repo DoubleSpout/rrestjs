@@ -8,7 +8,7 @@ var http = require('http'),
 			res.render('/index2.jade');
 		}
 		else if(n===1){
-			res.render('/index.jade', {"t":'hello world'});
+			res.render('/jade/index.jade', {"t":'hello world'});
 		}
 		else if(n===2){
 			res.render('/index2.jade',function(err, html){
@@ -23,10 +23,10 @@ var http = require('http'),
 			});
 		}
 		else if(n===4){
-			res.render('/index.jade', i, {"t":'hello world'});
+			res.render('/jade/index.jade', i, {"t":'hello world'});
 		}
 		else if(n===5){
-			res.render('/index.jade', i, {"t":'hello world'}, function(err, html){
+			res.render('/jade/index.jade', i, {"t":'hello world'}, function(err, html){
 				console.log(err);
 				console.log(html);
 			});
@@ -37,7 +37,7 @@ var http = require('http'),
 			});
 		}
 		else if(n===7){
-			res.compiletemp('/index.jade', i, {"t":'hello world'}, function(err, html){
+			res.compiletemp('/jade/index.jade', i, {"t":'hello world'}, function(err, html){
 				res.sendjson({'data':html});
 			});
 		}
