@@ -4,6 +4,7 @@
 */
 var should = require('should');
 var path = require('path');
+var request = require('request');
 var testconf = require('./testconf.js');
 module.exports.rrestjsconfig = {
 	listenPort:3000,
@@ -28,7 +29,7 @@ rrest.tploption.usersex = 'male';
 http.globalAgent.maxSockets = 10;
 
 var file = require('fs');
-var i = 10;
+var i = 11;
 var r = 0
 var result = function(name){
 	var num = ++r;
@@ -150,3 +151,19 @@ getfn('/', function(res, body){
 			result('jade');
 
 });
+
+
+ request(
+    { method: 'HEAD',
+      uri: 'http://'+testconf.hostname+':3000/static/b.js',},
+    function(error, res, body) {
+	  should.strictEqual(res.statusCode, 200);
+	  should.strictEqual(res.headers['content-length'], '13');
+    	result('head');
+    })
+
+
+
+
+
+

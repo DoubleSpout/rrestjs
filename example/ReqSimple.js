@@ -14,6 +14,7 @@ var http = require('http'),
 		res.write('req.bodyparam:'+JSON.stringify(req.bodyparam)+'<br />');	
 		res.write('req.putparam:'+JSON.stringify(req.putparam)+'<br />');	
 		res.write('req.cookie:'+JSON.stringify(req.cookie)+'<br />');
+		res.write('req.param:'+JSON.stringify(req.param)+'<br />');
 		res.write('req.isxhr:'+JSON.stringify(req.isxhr)+'<br />');
 		res.write('<script>document.cookie = "name = spout"</script>');
 		res.end('</body>');

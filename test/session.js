@@ -13,11 +13,11 @@ module.exports.rrestjsconfig = {
 		sessionName:'rrSid' //保存session id 的cookie 的name
 	};
 var http = require('http'),
-	rrest = require('../../'),
+	rrest = require('../'),
 	loop = 1;
     server = http.createServer(function (req, res){
-		if(loop>=5) return res.send('done');
-		if(req.session.count>100){
+		if(loop>=3) return res.send('done');
+		if(req.session.count>50){
 			req.delsession();
 			++loop;
 			return res.send('del');
@@ -25,3 +25,11 @@ var http = require('http'),
 		if(!req.session.count) req.session.count = 0;		
 		res.send(++req.session.count);
 	}).listen(rrest.config.listenPort);
+
+
+
+setTimeout(function(){
+	require('./session/client.js')
+},1000)
+
+
