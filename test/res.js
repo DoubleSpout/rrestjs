@@ -41,7 +41,13 @@ var http = require('http'),
 		if(req.path[0] == 'clearcookie'){
 			res.clearcookie('userid');
 			res.send('');
-		}				
+		}
+		if(req.path[0] == 'r500'){
+			res.r500();
+		}
+		if(req.path[0] == 'r403'){
+			res.r403();
+		}
 	})).listen(rrest.config.listenPort);
 
 //设置全局的模版option
@@ -52,7 +58,7 @@ rrest.tploption.usersex = 'male';
 http.globalAgent.maxSockets = 10;
 
 var file = require('fs');
-var i = 8;
+var i = 10;
 var r = 0
 var result = function(name){
 	var num = ++r;
@@ -146,6 +152,15 @@ getfn('clearcookie', function(res, body){
 	should.strictEqual(res.statusCode, 200);
 	should.strictEqual(res.headers['set-cookie'].toString(), [ 'userid=; path=/; expires='+new Date(1).toUTCString()+'; httpOnly'].toString());
 	result('clearcookie');
+});
+
+getfn('r403', function(res, body){
+	should.strictEqual(res.statusCode, 403);
+	result('403 error');});
+
+getfn('r500', function(res, body){
+	should.strictEqual(res.statusCode, 500);
+	result('500 error');
 });
 
 

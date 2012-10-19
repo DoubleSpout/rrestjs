@@ -1,0 +1,216 @@
+#!/usr/bin/env node
+var exec = require('child_process').exec,
+    program = require('commander'),
+    mkdirp = require('mkdirp'),
+    pkg = require('../package.json'),
+    version = pkg.version,
+    os = require('os'),
+    path = require('path'),
+    fs = require('fs');
+
+    global._restConfig = require('../config/default_config.js');
+
+
+// CLI
+
+program
+  .version(version)
+  .option('-p, --path [value]', 'the folder you will build rrestjs on, default is current')
+  .option('-d, --dev', 'open dev module only can use in linux')
+  .parse(process.argv);
+
+// Path
+
+var path = program.args.shift() || '.';
+
+// end-of-line code
+
+var eol = 'win32' == os.platform() ? '\r\n' : '\n'
+
+//create folder
+
+if(program.path) _restConfig.baseDir = program.path;
+
+var baseurl =  _restConfig.baseDir;
+
+
+if(!fs.existsSync(baseurl)) fs.mkdirSync(baseurl);
+else fs.chmodSync(baseurl, 0755);
+	
+var create_folder = require('../lib/createFolders.js');
+
+create_folder(['/controller', '/dao', '/config'])
+
+
+//program
+
+
+
+
+
+//file text
+var appjs = [
+	"//本app通过try和catch来快速匹配控制器",
+	"var conf = module.exports.conf = require('./config/config');",
+	"//加载配置文件，必须放在rrestjs加载之前",
+	"var http = require('http'),",
+	"    rrest = require('rrestjs'),",
+	"    server = http.createServer(function (req, res){//这里是请求主入口",
+	"        try{",
+    "            require('./controller/'+req.path[0])[req.path[1]](req, res);//执行指定控制器中的方法，将req和res传参进去",
+    "            }",
+	"         catch(err){",
+    "              restlog.info(err);//有error，info，等多种等级",
+    "              res.r404();",
+    "           }",
+	"      }).listen(rrest.config.listenPort);"    
+].join(eol);
+
+
+
+var app_router_js = [
+	"//本app通过路由模式来快速匹配控制器",
+	"var conf = module.exports.conf = require('./config/config');",
+	"//加载配置文件，必须放在rrestjs加载之前",
+	"conf.router = require('./router.js'); //加载路由",
+	"var http = require('http'),",
+	"    rrest = require('rrestjs'),",
+	"    server = http.createServer(function (req, res){//这里是请求主入口",
+	"        if(req.pathname === '/'){",
+        "           return res.send('hello rrestjs!') && false",
+        "            }",
+	"      }).listen(rrest.config.listenPort);"    
+].join(eol);
+
+
+
+var router_js = [
+	"var user = require('./controller/user');",
+	"module.exports = {//手动路由",
+	'	"get:/user/login":user.login,',
+	'	"get:post:/user/regist":user.regist,',
+	'	"get:post:/user/logout":user.logout,',
+	'	"post:put:/user/info":user.info,',
+	'	"get:post:put:/user/info/{userid}":user.infoid,',
+	'	"delete:/user/password":user.password,',
+	'    }'
+].join(eol);
+
+
+
+var controller_user = [// JavaScript Document
+"var user = {}",
+"user.login = function(req, res){",
+"		//do something",
+"		res.send('/user/login');",
+"	}",
+"user.regist = function(req, res){",
+"		//do something",
+"		res.send('/user/regist');",
+"	}",
+"user.login = function(req, res){",
+"		//do something",
+"		res.send('/user/login');",
+"	}",
+"user.logout = function(req, res){",
+"		//do something",
+"		res.send('/user/logout');",
+"	}",
+"user.info = function(req, res){",
+"		//do something",
+"		res.send('/user/info');",
+"	}",
+"user.infoid = function(req, res){",
+"		//do something",
+"		res.send('/user/infoid');",
+"	}",
+"user.password = function(req, res){",
+"		//do something",
+"		res.send('/user/password');",
+"	}",
+"module.exports = user;",
+].join(eol);
+
+
+var dao_mongodb = [
+"//以下是一段使用连接池pool的mongodb的代码，用户访问就会相应一条mongodb数据库里的内容",
+"module.exports.rrestconfig = {",
+"	listenPort:3000,",
+"	//mongodb 配置",
+"	isMongodb:true, //是否开启mongodb支持，注意：如果使用数据库存储session，这里必须开启",
+"	MongodbIp:'127.0.0.1', //mongodb地址",
+"	MongodbRC:false,//如果是false表示不使用mongodb的副本集，否则为字符串，表示副本集的名称",
+"	MongodbRChost:[],//表示mongodb副本集的ip:port数组。",
+"	MongodbPort:27017, //mongodb端口",
+"	MongodbConnectString:false, //是否使用字符串连接，日入nae的连接方法，这个优先级高于地址+端口",
+"	MongodbConnectTimeout:1000*30,//连接超时",
+"	MongodbMaxConnect:50,//连接池连接数",
+"	MongodbDefaultDbName:'rrest',//默认使用的数据库名",
+"	poolLogger:false,//是否记录连接池的日志，建议关闭",
+"	}",
+"var http = require('http'),",
+"    rrest = require('rrestjs'),",
+"   server = http.createServer(function (req, res){",
+"		rrest.mongo(function(err, db, release){",
+"			db.collection(\"mongotest\", function(err, collection){",
+"				if(err) return mongo_err(err, release);",
+"				collection.findOne({id: 1}, function(err, doc){",
+"					if(err) return mongo_err(err, release);",
+"					res.sendjson(doc);",
+"					release();",
+"				});",
+"			});",
+"		});",
+"	}).listen(rrest.config.listenPort);",
+"",
+"var mongo_err = function(err, release){",
+"	console.log(err);",
+"	return release();",
+"};",
+"",
+"rrest.mongo(function(err, db, release){//Caution release!",
+"	if(err) return mongo_err(err, release);",
+"	db.collection('mongotest', function(err, collection){",
+"		if(err) return mongo_err",
+"		collection.save({id:1, name:'Mongodb rrestjs test!'}, {'safe':true}, function(err,r){",
+"			if(err) return mongo_err(err, release);	",
+"			release();",
+"		});",
+"	});",
+"});",
+].join(eol);
+
+
+var config_json = fs.readFileSync(__dirname+'/../config/default_config.js', 'utf-8')
+config_json = config_json.replace(':80',':3000');//将端口改为3000
+if(program.dev){
+	config_json = config_json.replace('isCluster:false,', 'isCluster:true,')
+}
+
+
+      write(baseurl + '/router.js', router_js);
+      write(baseurl + '/app.js', appjs);
+      write(baseurl + '/app_router.js', app_router_js);
+      write(baseurl + '/controller/user.js', controller_user);
+      write(baseurl + '/dao/mongodb_demo.js', dao_mongodb);
+      write(baseurl + '/config/config.js', config_json);
+
+
+
+
+
+
+function write(path, str) {
+  fs.writeFile(path, str);
+  console.log('   \x1b[36mcreate\x1b[0m : ' + path);
+}
+
+
+
+
+
+
+
+
+
+

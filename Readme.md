@@ -31,7 +31,7 @@
 
   目前没有对windows环境下做任何测试和支持，请使用linux系统
 
-  1、npm install rrestjs,如果node_modules不能正常下载执行 npm update rrestjs（如果node_modules还是不能正常打包或者有任何错误，请手动下载本例中的node_modules文件夹）
+  1、npm install -g rrestjs,如果node_modules不能正常下载执行 npm update rrestjs（如果node_modules还是不能正常打包或者有任何错误，请手动下载本例中的node_modules文件夹）
 
   2、直接从github上打包下载  
 
@@ -72,7 +72,7 @@
 
       var http = require('http'),    
 
-      rrest = require('rrest'),
+      rrest = require('rrestjs'),
 
       server = http.createServer(function (req, res) {
 
@@ -113,7 +113,7 @@
 
 		}
 
-	    }).listen(rrest.config.listenport);//监听配置文件的设置的端口，如果要修改或者读取配置文件的内容，请用 rrest.config;
+	    }).listen(rrest.config.listenPort);//监听配置文件的设置的端口，如果要修改或者读取配置文件的内容，请用 rrest.config;
 
           rrest = rrest; //升级rrest为全局变量
 
@@ -144,6 +144,10 @@
   example中的例子均在本人机器上测试通过，linux 2.6.8 64bit / node.js v0.6.6 / mongodb v2.0，对于windows下并没有测试过，请见谅。 
 
   并且由于部分示例需要调整 /config/example_config.js 文件夹中的内容或者依赖mongodb，所以想要正常运行部分示例需要先安装 mongodb v2.0 及以上，然后可能需要手动去修改config配置内容来运行它
+
+  直接生成项目文件夹： rrestjs -p /tmp/foo && cd /tmp/foo;
+
+  也可以使用开发者模式，带自动重启（windows下无效）   rrestjs -p /tmp/foo -d && cd /tmp/foo;
 
 ##API
 
@@ -231,7 +235,7 @@
 
 ##0.9版本新增手动路由（类似expressjs）
 
-  用户可以再config.js新增这样的设置：
+  用户可以再config.js新增这样的设置：{}花括号内的为变量占位，表示此段url为可变参数
 
 
       manualRouter:{
@@ -239,6 +243,8 @@
 	"get:/user/face":function(req, res){res.send('change face')},
         
 	"post:put:/user/info":function(req, res){res.send('get not access!')},
+
+	"post:put:/user/info/{userid}":function(req, res){res.send('get user id!')},
         
 	"/user/all":function(req, res){
        

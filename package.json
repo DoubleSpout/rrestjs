@@ -16,7 +16,7 @@
     "ROA",
     "high performance"
   ],
-  "version": "0.9.4",
+  "version": "0.9.5",
   "url": "http://www.rrestjs.com",
   "homepage": "http://www.rrestjs.com",
   "repository": {
@@ -42,6 +42,8 @@
     "now": "0.8.1",
     "http-proxy": "0.8.2",
     "request": "2.11.4",
+    "commander": "1.0.5",
+    "mkdirp": "0.3.4",
     "qs": "0.5.1"
   },
   "devDependencies": {},
@@ -55,6 +57,7 @@
   "_npmVersion": "1.1.21",
   "_nodeVersion": "v0.6.18",
   "_defaultsLoaded": true,
+  "bin": { "rrestjs": "./bin/rrestjs" },
   "dist": {
     "shasum": "be279910b832e568d5c732fb097c4df3b6785501"
   },
