@@ -40,6 +40,9 @@ var loop = function(){
 	}
 	else{
 		console.log('all test done!good!!!!');
+		console.log('do more test example/MultiProcess.js')
+		console.log('do more test example/rrestpipe.js')
+		console.log('do more test example/poolMongodb.js')
 		process.exit();
 	}
 	return arguments.callee;
