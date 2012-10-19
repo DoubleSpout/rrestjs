@@ -21,6 +21,9 @@ program
 
 // Path
 
+
+
+
 var path = program.args.shift() || '.';
 
 // end-of-line code
@@ -30,6 +33,15 @@ var eol = 'win32' == os.platform() ? '\r\n' : '\n'
 //create folder
 
 if(program.path) _restConfig.baseDir = program.path;
+
+else{
+
+
+  console.log('please start rrestjs commond like $ rrestjs -p /usr/local/app, $ rrestjs -h for help');
+  process.exit();
+
+
+}
 
 var baseurl =  _restConfig.baseDir;
 
