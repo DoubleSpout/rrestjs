@@ -15,11 +15,12 @@ module.exports = {
 	charset: 'utf-8',
 	autoStatic:'/static',  //自动响应静态文件的uri，比如 http://rrestjs.com/static/rrest.jpg 将会自动响应给客户端，为了加速这里只能设置一级目录
 	staticFolder:'/static',  //自动响应静态文件的根目录，比如  http://rrestjs.com/static/rrest.jpg 将返回 baseDir+'/static/rrest.jpg' 
-	staticParse:true,//是否开启静态文件压缩整合功能
+	staticParse:true,// 是否开启静态文件整合功能, 即combo功能
     staticParseName:'parse',//压缩整合功能的名称，例如用户可以'/static/?parse=/index.body.css|/index.user.css|/user.face.css'压缩整合成一个css响应给客户端
+    staticParseCompress: true, // 是否开启静态文件压缩整合
 	staticParseCacheTime:1000*60*60,//压缩整合缓存时间，1小时
 	staticParseCacheFolder:'/tmp/static',//缓存整合功能的缓存文件夹
-	staticParseMaxNumber:10,//整合压缩css或js文件的最大上限，建议不要超过15
+	staticParseMaxNumber:10,//整合压缩css或js文件个数的最大上限，建议不要超过15
 	uploadFolder:'/tmp/upload', //文件上传的临时目录
 	postLimit:1024*1024*100,//限制上传的postbody大小，单位byte
 	connectTimeout:false,//限制客户端连接的时间，false为永远不超时，1000表示客户端和服务端1秒内没活跃则自动切断客户端连接
