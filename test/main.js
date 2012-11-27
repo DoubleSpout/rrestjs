@@ -17,7 +17,8 @@ var spawn = require('child_process').spawn;
 
 var gotest = function(filename){
 		var haserr = false;
-		var testp = spawn('node', [filename]);
+		if(filename == 'devtest.js')  var testp = spawn('node', [filename,'-d']);
+		else var testp = spawn('node', [filename]);
 		testp.stdout.on('data', function (data) {
 			console.log('stdout: ' + data);
 		});

@@ -129,6 +129,21 @@
   config配置详细说明地址：https://github.com/DoubleSpout/rrestjs/blob/master/config/default_config.js
 
 
+##开发模式-d或--dev参数
+ 
+  进入开发者模式，只需要 node app.js -d 或者 node app.js -dev，用来进入，还可以根据开发者模式加载开发配置文件，比如：module.exports.conf_dev，这样就加载了开发模式下的配置文件了。
+
+  只需要在原有的conf或者config等变量名后加“_dev”，rrestjs会自动的去获取此dev配置文件
+
+  比如：
+  
+  module.exports.conf = require('./config/post.conf.js'); //用于发布的生产环境
+ 
+  module.exports.conf_dev = require('./config/post.conf_dev.js'); //用于开发的开发环境
+
+  如果进入了开发模式没有找到相关的config文件，则使用默认配置
+
+
 ##baseDir
 
   rrestjs所有的配置目录都是相对于baseDir的相对目录，baseDir的设置通常分为3种：注意除 baseDir 其他路径的配置都需要加上前缀'/'

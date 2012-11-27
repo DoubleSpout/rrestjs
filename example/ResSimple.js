@@ -5,7 +5,7 @@ var http = require('http'),
 		res.cache('public', 1000);
 		res.clearcookie('rrSid');
 		res.cookie('RestSpout', 'I am coming!');
-		
+
 		//res.redirect('http://www.baidu.com')
 
 		//res.send('<body>API</body>');
