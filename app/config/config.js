@@ -32,7 +32,7 @@ module.exports = {
 	ClusterNum:1, //开启的进程数
 	ClusterReload:'/controller',//只有当进程数为1时，进入开发模式，可以监听此文件夹下的改动，包括子文件夹，不用重复 ctrl+c 和 上键+enter		
 //静态文件配置
-	statciMaxAge : 86400000*7, //静态文件的缓存周期，建议设置为7天
+	staticMaxAge : 86400000*7, //静态文件的缓存周期，建议设置为7天
 	staticGetOnly : true, //静态是否只能通过get获取
 	staticLv2MaxAge : 1000*60*60, //静态文件2级缓存更新周期，建议设置为1小时
 	staticLv2Number : 10000,//静态文件2级缓存数量，可以根据内存的大小适当调整
