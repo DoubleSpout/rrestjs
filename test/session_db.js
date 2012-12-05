@@ -36,7 +36,7 @@ module.exports.rrestjsconfig = {
 var http = require('http'),
 	rrest = require('../'),
 	loop = 1;
-    server = http.createServer(rrest(function (req, res){
+    server = http.createServer(function (req, res){
 		if(loop>=3) return res.send('done');
 		if(req.session.count>100){
 			req.delsession();
@@ -45,7 +45,7 @@ var http = require('http'),
 		}
 		if(!req.session.count) req.session.count = 0;		
 		res.send(++req.session.count);
-	})).listen(rrest.config.listenPort);
+	}).listen(rrest.config.listenPort);
 
 
 	setTimeout(function(){

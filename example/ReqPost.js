@@ -1,7 +1,7 @@
 module.exports.rrestjsconfig = require('./config/post.conf.js');
 var http = require('http'),
 	rrest = require('../'),
-    server = http.createServer(rrest(function (req, res) {
+    server = http.createServer(function (req, res) {
 				res.write('<body>');
 				res.write(formstr)
 				res.write('<b>we get post data down list:</b><br /><br />');
@@ -15,7 +15,7 @@ var http = require('http'),
 				res.write('req.putparam:'+JSON.stringify(req.putparam)+'<br />');
 				res.write('req.cookie:'+JSON.stringify(req.cookie)+'<br />');
 				res.end('</body>');
-	})).listen(rrest.config.listenPort);
+	}).listen(rrest.config.listenPort);
 var formstr = '<form  action="/user/name?method=post" method="post">'+
 			  '<input type="text" name="input_name" value="spout" /><br/><br/>'+
 			  '<input type="password" name="password" value="password" /><br/><br/>'+

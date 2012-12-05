@@ -10,9 +10,9 @@ conf.manualRouter = {//手动路由
 }
 var http = require('http'),
 	rrest = require('../'),
-    server = http.createServer(rrest(function (req, res){
+    server = http.createServer(function (req, res){
 		if(req.pathname === '/'){
 			res.send('hello world' + 'dev config isClientPipe:'+rrest.config.isClientPipe+'  isSession:'+rrest.config.isSession) 
 			return false;
 		}
-	})).listen(rrest.config.listenPort);
+	}).listen(rrest.config.listenPort);

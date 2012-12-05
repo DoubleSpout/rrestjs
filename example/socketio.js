@@ -2,9 +2,9 @@ module.exports.conf = require('./config/onesession.conf.js');
 var http = require('http'),
 	rrest = require('../'),
 	io = require('socket.io'),
-    server = http.createServer(rrest(function (req, res){
+    server = http.createServer(function (req, res){
 		res.send(html);		
-	})).listen(rrest.config.listenPort),
+	}).listen(rrest.config.listenPort),
 	socketio = io.listen(server);
 
 socketio.sockets.on('connection', function (socket) {

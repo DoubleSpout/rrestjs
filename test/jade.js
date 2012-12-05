@@ -21,7 +21,7 @@ var fhtml = '';
 var http = require('http'),
 	rrest = require('../'), 
 	i=0,
-    server = http.createServer(rrest(function (req, res) {
+    server = http.createServer(function (req, res) {
 		var pname = req.pathname;
 		if(pname === '/a'){
 			res.render('/jade.jade');
@@ -57,7 +57,7 @@ var http = require('http'),
 				res.sendjson({'data':html});
 			});
 		}
-	})).listen(rrest.config.listenPort);
+	}).listen(rrest.config.listenPort);
 
 //设置全局的模版option
 rrest.tploption.userid = function(req,res){return req.ip};

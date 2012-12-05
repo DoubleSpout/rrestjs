@@ -3,7 +3,7 @@ var http = require('http'),
 	util = require('util'),
 	qs = require('qs'),
 	rrest = require('../'),
-    server = http.createServer(rrest(function (req, res) {
+    server = http.createServer(function (req, res) {
 			var dd = qs.parse('a%5Bx%5D=1&a%5By%5D=2&b%5B%5D=1&b%5B%5D=2&b%5B%5D=3&b%5B%5D=4&c=3')
 console.log(dd);
 			if(req.method === 'POST'){
@@ -44,7 +44,7 @@ console.log(dd);
 				
 			}
 
-	})).listen(rrest.config.listenPort);
+	}).listen(rrest.config.listenPort);
 var formstr = '<script src="http://www.6998cdn.com/skin/js/jquery.1.7.1.min.js"  type="text/javascript"></script>'+
 			  '<form enctype="multipart/form-data" action="/user/name?method=post" method="post">'+
 			  '<input type="text" name="input_name" value="spout" /><br/><br/>'+

@@ -572,7 +572,7 @@
 基于MIT协议发布：
 
 ```
-Copyright (c) 2012 Lei Zongmin(吴中骅) <snoopyxdy@gmail.com>
+Copyright (c) 2012 Wu zhonghua(吴中骅) <snoopyxdy@gmail.com>
 http://www.rrestjs.com
 
 The MIT License

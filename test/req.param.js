@@ -17,7 +17,7 @@ module.exports.rrestjsconfig = {
 
 var http = require('http');
 var	rrest = require('../');
-var   server = http.createServer(rrest(function (req, res){
+var   server = http.createServer(function (req, res){
 		if(req.path[0] == 'upload2'){
 			if(req.param.my_file){
 				delete req.param.my_file.path;
@@ -25,7 +25,7 @@ var   server = http.createServer(rrest(function (req, res){
 			}
 			res.sendjson(req.param)
 		}		
-	})).listen(rrest.config.listenPort);
+	}).listen(rrest.config.listenPort);
 
 //设置全局的模版option
 http.globalAgent.maxSockets = 10;

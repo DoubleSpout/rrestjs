@@ -1,7 +1,7 @@
 module.exports._rrestjsconfig = require('./config/syncsession.conf.js');
 var http = require('http'),
 	rrest = require('../'),
-	server = http.createServer(rrest(function (req, res){
+	server = http.createServer(function (req, res){
 			var session = req.session;
 			if(session.count>10){
 				req.delsession();
@@ -12,5 +12,5 @@ var http = require('http'),
 				session.count = 0;
 			}					
 			res.send('process '+rrest.id+' (process.pid : '+process.pid+' ) is working: session.count'+(++session.count));
-	})).listen(rrest.config.listenPort);		
+	}).listen(rrest.config.listenPort);		
 

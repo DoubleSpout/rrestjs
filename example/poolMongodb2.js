@@ -1,7 +1,7 @@
 module.exports.rrestconfig = require('./config/poolMongodb2.js');
 var http = require('http'),
 	rrest = require('../'),
-    server = http.createServer(rrest(function (req, res){
+    server = http.createServer(function (req, res){
 		rrest.mongo(function(err, db, release){
 			if(err) return res.send(err);
 			db.collection("mongotest", function(err, collection){
@@ -13,7 +13,7 @@ var http = require('http'),
 				});
 			});
 		});
-	})).listen(rrest.config.listenPort);
+	}).listen(rrest.config.listenPort);
 
 var mongo_err = function(err, release){
 	console.log(err);

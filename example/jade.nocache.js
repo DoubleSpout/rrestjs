@@ -2,7 +2,7 @@ module.exports._conf = require('./config/jade.nocache.conf.js');
 var http = require('http'),
 	rrest = require('../'), 
 	i=0,
-    server = http.createServer(rrest(function (req, res) {
+    server = http.createServer(function (req, res) {
 		var n = (i++)%8;
 		if(n===0){
 			res.render('/index2.jade');
@@ -41,4 +41,4 @@ var http = require('http'),
 				res.sendjson({'data':html});
 			});
 		}
-	})).listen(rrest.config.listenPort);
+	}).listen(rrest.config.listenPort);

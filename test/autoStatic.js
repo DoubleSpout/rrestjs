@@ -17,9 +17,9 @@ module.exports.rrestjsconfig = {
 
 var http = require('http'),
 	rrest = require('../'),
-    server = http.createServer(rrest(function (req, res){
+    server = http.createServer(function (req, res){
 		res.render('/jade.jade', {name:'rrestjs'});
-	})).listen(rrest.config.listenPort);
+	}).listen(rrest.config.listenPort);
 
 //设置全局的模版option
 rrest.tploption.userid = function(req,res){return req.ip};

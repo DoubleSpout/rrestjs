@@ -1,7 +1,7 @@
 module.exports.rrestconfig = require('./config/dbsession.conf.js');
 var http = require('http'),
 	rrest = require('../'),
-    server = http.createServer(rrest(function (req, res){
+    server = http.createServer(function (req, res){
 		rrest.mongo(function(err, db, release){
 			db.collection("mongotest", function(err, collection){
 				if(err) return mongo_err(err, release);
@@ -12,7 +12,7 @@ var http = require('http'),
 				});
 			});
 		});
-	})).listen(rrest.config.listenPort);
+	}).listen(rrest.config.listenPort);
 
 var mongo_err = function(err, release){
 	console.log(err);

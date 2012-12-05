@@ -2,8 +2,8 @@
 module.exports.config = require('./config/autoReuqire.conf.js');
 var	http = require('http'),
 	rrest = require('../'),
-	server = http.createServer(rrest(function (req, res){
+	server = http.createServer(function (req, res){
 			res.send('use module.exports.config!');
-	})).listen(rrest.config.listenPort);	
+	}).listen(rrest.config.listenPort);	
 
 
