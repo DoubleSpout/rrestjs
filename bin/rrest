@@ -48,7 +48,7 @@ var baseurl =  _restConfig.baseDir;
 
 if(!fs.existsSync(baseurl)) fs.mkdirSync(baseurl);
 else fs.chmodSync(baseurl, 0755);
-	
+
 var create_folder = require('../lib/createFolders.js');
 
 create_folder(['/controller', '/dao', '/config'])
@@ -75,7 +75,7 @@ var appjs = [
     "              restlog.info(err);//有error，info，等多种等级",
     "              res.r404();",
     "           }",
-	"      }).listen(rrest.config.listenPort);"    
+	"      }).listen(rrest.config.listenPort);"
 ].join(eol);
 
 
@@ -91,7 +91,7 @@ var app_router_js = [
 	"        if(req.pathname === '/'){",
         "           return res.send('hello rrestjs!') && false",
         "            }",
-	"      }).listen(rrest.config.listenPort);"    
+	"      }).listen(rrest.config.listenPort);"
 ].join(eol);
 
 
