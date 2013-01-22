@@ -2,7 +2,6 @@ module.exports.appconfig = require('./config/multi.conf.js');
 var http = require('http'),
 	rrest = require('../'),
 	server = http.createServer(function (req, res){
+            
 			res.send('process '+rrest.child.id+' is listen at '+rrest.config.listenPort[rrest.id]+' : hello world everyone!');
-	});
-
-	rrest.listen(server);//这里如果不传port参数，则回去读config文件里的端口号
+	}).listen(rrest.config.listenPort);//

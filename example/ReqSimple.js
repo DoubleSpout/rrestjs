@@ -2,7 +2,6 @@ module.exports.rrestjsconfig = require('./config/post.conf.js');
 var http = require('http'),
 	rrest = require('../'),
     server = http.createServer(function (req, res){
-		console.log(req.headers);
 		res.write('<body>');
 		res.write('req.path:'+req.path+'<br />');
 		res.write('req.ip:'+req.ip+'<br />');

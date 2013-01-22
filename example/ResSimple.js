@@ -2,7 +2,6 @@ module.exports.rrestjsconfig = require('./config/post.conf.js');
 var http = require('http'),
 	rrest = require('../'),
     server = http.createServer(function (req, res) {
-
 		res.cache('public', 1000);
 		res.clearcookie('rrSid');
 		res.cookie('RestSpout', 'I am coming!');

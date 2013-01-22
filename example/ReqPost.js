@@ -2,7 +2,6 @@ module.exports.rrestjsconfig = require('./config/post.conf.js');
 var http = require('http'),
 	rrest = require('../'),
     server = http.createServer(function (req, res) {
-				console.log(req.headers)
 				res.write('<body>');
 				res.write(formstr)
 				res.write('<b>we get post data down list:</b><br /><br />');

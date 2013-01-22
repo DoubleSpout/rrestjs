@@ -17,11 +17,12 @@ var testconf = require('./testconf.js');
 module.exports.rrestjsconfig = {
 	listenPort:3000,
 	isLog:true, //是否开启日志，过多的记录日志会影响性能，但是能记录系统运行情况
-	logLevel:'warn',//['trace','debug','info','warn','error', 'fatal'] 日志等级
+	logLevel:'info',//['trace','debug','info','warn','error', 'fatal'] 日志等级
 	logPath:'/mylogs', // "/mylogs/console.log" 日志存放目录
-	logMaxSize:20, //单个日志文件大小
-	logFileNum:10, //当单个日志文件大小达标时，自动切分，这里设置最多切分多少个日志文件
 	baseDir: path.join(__dirname),
+    isCluster:true, //是否开启多进程集群
+	isClusterAdmin:true,//进程监听管理功能是否开启
+    ClusterNum:4 //开启的进程数
 };
 var rrest = require('../');
 
@@ -37,15 +38,17 @@ rrest(function(){
 
 setTimeout(function(){
 	var should = require('should');
-	var fatal = fs.readFileSync(__dirname+'/mylogs/restlog_main.log.1', 'utf-8');
-	var error = fs.readFileSync(__dirname+'/mylogs/restlog_main.log.2', 'utf-8');
-	var warn = fs.readFileSync(__dirname+'/mylogs/restlog_main.log.3', 'utf-8');
-	should.strictEqual(fatal.indexOf('FATAL') !== -1, true);
-	should.strictEqual(error.indexOf('ERROR') !== -1, true);
-	should.strictEqual(warn.indexOf('WARN') !== -1, true);
-	console.log('restlog test done!')
+	var f1 = fs.readFileSync(__dirname+'/mylogs/restlog_0.log', 'utf-8');
+	var f2 = fs.readFileSync(__dirname+'/mylogs/restlog_1.log', 'utf-8');
+	var f3 = fs.readFileSync(__dirname+'/mylogs/restlog_2.log', 'utf-8');
+    var f4 = fs.readFileSync(__dirname+'/mylogs/restlog_3.log', 'utf-8');
+	should.strictEqual(f1.indexOf('FATAL') !== -1, true);
+	should.strictEqual(f2.indexOf('ERROR') !== -1, true);
+	should.strictEqual(f3.indexOf('WARN') !== -1, true);
+    should.strictEqual(f4.indexOf('WARN') !== -1, true);
+	console.log('restlog2 test done!')
 	process.exit();
-},3000);
+},5000);
 
 
 
