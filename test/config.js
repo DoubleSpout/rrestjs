@@ -8,7 +8,7 @@ var rrestconfig = module.exports.rrestjsconfig = require('../config/default_conf
 var rrest = require('../');
 
 should.strictEqual(rrest.config, rrestconfig);
-console.log('test done!');
+console.log('config.js test done!');
 process.exit();
 
 

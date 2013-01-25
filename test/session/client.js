@@ -34,7 +34,7 @@ var gorequest= function(param_cookie){
 						should.strictEqual(session_i, session_count);
 						var setcookie = res.headers['set-cookie'];
 						process.nextTick(function(){
-							setTimeout(function(){me(setcookie);},200);
+							setTimeout(function(){me(setcookie);},400);
 						});
 					})
 			}).on('err', function(e){

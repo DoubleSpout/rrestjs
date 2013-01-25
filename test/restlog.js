@@ -1,29 +1,33 @@
 /*
-	基本测试，response 例子
+	基本测试，log 分文件 例子
 */
 
 
 
-var fs = require('fs');
-var logsdir = __dirname+'/mylogs'
-var logsary = fs.readdirSync(logsdir)
-for(var i =0; i<logsary.length; i++){
-	fs.unlinkSync(logsdir+'/'+logsary[i]);
-}
 
+
+var fs = require('fs');
+var logsdir = __dirname+'/mylogs';
 var should = require('should');
 var path = require('path');
 var testconf = require('./testconf.js');
 module.exports.rrestjsconfig = {
 	listenPort:3000,
 	isLog:true, //是否开启日志，过多的记录日志会影响性能，但是能记录系统运行情况
-	logLevel:'warn',//['trace','debug','info','warn','error', 'fatal'] 日志等级
+	logLevel:'info',//['trace','debug','info','warn','error', 'fatal'] 日志等级
 	logPath:'/mylogs', // "/mylogs/console.log" 日志存放目录
 	logMaxSize:20, //单个日志文件大小
 	logFileNum:10, //当单个日志文件大小达标时，自动切分，这里设置最多切分多少个日志文件
 	baseDir: path.join(__dirname),
 };
 var rrest = require('../');
+
+
+var logsary = fs.readdirSync(logsdir)
+for(var i =0; i<logsary.length; i++){
+	fs.unlinkSync(logsdir+'/'+logsary[i]);
+}
+
 
 rrest(function(){
     restlog.info('info');

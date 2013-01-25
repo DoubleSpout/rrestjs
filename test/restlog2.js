@@ -1,5 +1,5 @@
 /*
-	基本测试，response 例子
+	基本测试，log 多进程 例子
 */
 
 
@@ -34,7 +34,7 @@ rrest(function(){
 
 })
 
-
+if(rrest.forkid == 'master'){
 
 setTimeout(function(){
 	var should = require('should');
@@ -48,8 +48,9 @@ setTimeout(function(){
     should.strictEqual(f4.indexOf('WARN') !== -1, true);
 	console.log('restlog2 test done!')
 	process.exit();
-},5000);
+},10000);
 
+}
 
 
 
