@@ -44,6 +44,7 @@ module.exports = {
 //session配置
 	isSession:false, //是否开启session，开启会影响性能。
 	syncSession:false,//当多进程时是否开启session同步，开启会影响性能。
+    sepSession:false,//是否使用分割session，比如使用数组['/client','/admin','/pay']表示三个访问目录使用不同的session
 	sessionName:'rrSid', //保存session id 的cookie 的name
 	sessionExpire:false, //false表示会话session，否则填入1000*60，表示session有效1分钟
 	clearSessionSetInteval:1000*60*60, //自动清理垃圾session时间，建设设置为1小时

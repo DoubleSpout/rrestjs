@@ -4,12 +4,7 @@
 
 
 
-var fs = require('fs');
-var logsdir = __dirname+'/mylogs'
-var logsary = fs.readdirSync(logsdir)
-for(var i =0; i<logsary.length; i++){
-	fs.unlinkSync(logsdir+'/'+logsary[i]);
-}
+
 
 var should = require('should');
 var path = require('path');
@@ -35,6 +30,16 @@ rrest(function(){
 })
 
 if(rrest.forkid == 'master'){
+    
+var fs = require('fs');
+var logsdir = __dirname+'/mylogs'
+var logsary = fs.readdirSync(logsdir)
+for(var i =0; i<logsary.length; i++){
+
+	fs.unlinkSync(logsdir+'/'+logsary[i]);
+    console.log(logsdir+'/'+logsary[i]+ ' del sucess!')
+}
+
 
 setTimeout(function(){
 	var should = require('should');
