@@ -32,7 +32,7 @@ var http = require('http'),
 			res.render('/ejs.ejs', {"name":'hello world'});
 		}
 		else if(pname === '/d'){
-			res.render('/ejs.ejs',  function(err, html){
+			res.render('/ejs',  function(err, html){
 				dhtml = html;
 			});
 		}
@@ -40,7 +40,7 @@ var http = require('http'),
 			res.render('/ejs.ejs', 1, {"usersex":'hello world'});
 		}
 		else if(pname === '/f'){
-			res.render('/ejs.ejs', 2, {}, function(err, html){
+			res.render('/ejs', 2, {}, function(err, html){
 				fhtml = html;
 			});
 		}

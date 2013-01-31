@@ -29,7 +29,7 @@ var http = require('http'),
 			res.render('/jade.jade');
 		}
 		else if(pname === '/b'){
-			res.render('/jade.jade', {"name":'hello world'});
+			res.render('/jade', {"name":'hello world'});
 		}
 		else if(pname === '/d'){
 			res.render('/jade.jade',  function(err, html){
@@ -40,7 +40,7 @@ var http = require('http'),
 			res.render('/jade.jade', 1, {"usersex":'hello world'});
 		}
 		else if(pname === '/f'){
-			res.render('/jade.jade', 2, {}, function(err, html){
+			res.render('/jade', 2, {}, function(err, html){
 				fhtml = html;
 			});
 		}

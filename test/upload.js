@@ -72,7 +72,7 @@ uri:'http://'+testconf.hostname+':3000/big',
 headers:{
 }
 }, function(error,res,body){
-	should.strictEqual(res.statusCode, 500);
+	should.strictEqual(res.statusCode, 400);
 	result('big')
 }).form().append('my_file', new Buffer(1024*1024*100));
 
@@ -98,7 +98,7 @@ headers:{
 }
 }, function(error,res,body){
 	
-	should.strictEqual(res.statusCode, 500);
+	should.strictEqual(res.statusCode, 400);
 	result('huge')
 }).form().append('my_file',"123");
 

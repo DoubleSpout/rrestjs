@@ -24,7 +24,7 @@ var http = require('http'),
     server = http.createServer(function (req, res) {
 		var pname = req.pathname;
 		if(pname === '/a'){
-			res.render('/jade.jade');
+			res.render('/jade');
 		}
 		else if(pname === '/b'){
 			res.render('/jade.jade', {"name":'hello world'});
@@ -35,7 +35,7 @@ var http = require('http'),
 			});
 		}
 		else if(pname === '/d'){
-			res.render('/jade.jade', {"name":'hello world'}, function(err, html){
+			res.render('/jade', {"name":'hello world'}, function(err, html){
 				dhtml = html;
 			});
 		}
@@ -48,7 +48,7 @@ var http = require('http'),
 			});
 		}
 		else if(pname === '/g'){
-			res.compiletemp('/jade.jade', function(err, html){
+			res.compiletemp('/jade', function(err, html){
 				res.sendjson({'data':html});
 			});
 		}

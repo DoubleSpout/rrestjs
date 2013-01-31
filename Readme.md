@@ -202,6 +202,10 @@
 
   Request.param 会将所有客户端发送过来的参数，不论get或者post等的参数放入这个对象。如果出现重名则file>post>get
 
+  Request.apibody 如果是做webapi打算支持json或者xml数据格式提交，则会根据put或者post上来的请求头里的content-type来判断使用何种解析器解析request的body，目前支持xml和json
+
+  Request._body 对于支持webapi的json或者xml数据提交过来的原始字符串，可供用户自行使用
+
 ##Response: response对象，是ServerResponse的一个实例
    
   Response.cache(type, maxAge): 设置请求缓存头，让浏览器对此uri请求缓存,type: public, private等, maxAge: 缓存的时间,单位毫秒; 
@@ -247,6 +251,8 @@
 	注：此方法当出错时自动响应err页面
   
   Response.compiletemp(template, [pageNumber, options, callback]):用法同Response.render，只是这个方法callback返回(err, htmlString)，只返回编译过后的html字符串，无论出错err与否都不会自动响应客户端的请求，
+
+  Response.api(object): 此方法用来返回webapi的接口，如果请求头含有accept application/json的，则返回json字符串，如果含有application/xml，则返回xml字符串
 
 ##0.9版本新增手动路由（类似expressjs）
 

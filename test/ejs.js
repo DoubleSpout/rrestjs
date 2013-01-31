@@ -24,13 +24,13 @@ var http = require('http'),
     server = http.createServer(function (req, res) {
 		var pname = req.pathname;
 		if(pname === '/a'){
-			res.render('/ejs.ejs');
+			res.render('/ejs');
 		}
 		else if(pname === '/b'){
 			res.render('/ejs.ejs', {"name":'hello world'});
 		}
 		else if(pname === '/c'){
-			res.render('/ejs.ejs',function(err, html){
+			res.render('/ejs',function(err, html){//测试不加后缀名是否可以render成功
 				chtml = html;
 			});
 		}
@@ -43,7 +43,7 @@ var http = require('http'),
 			res.render('/ejs.ejs', 1, {"usersex":'hello world'});
 		}
 		else if(pname === '/f'){
-			res.render('/ejs.ejs', 2, {}, function(err, html){
+			res.render('/ejs', 2, {}, function(err, html){
 				fhtml = html;
 			});
 		}
@@ -57,6 +57,11 @@ var http = require('http'),
 				res.sendjson({'data':html});
 			});
 		}
+        else if(pname === '/i'){
+			res.compiletemp('/ejs2', 3, {"name":'hello world'}, function(err, html){
+				res.sendjson({'data':html});
+			});
+		}
 	}).listen(rrest.config.listenPort);
 
 //设置全局的模版option
@@ -66,7 +71,7 @@ rrest.tploption.usersex = 'male';
 
 http.globalAgent.maxSockets = 10;
 
-var i = 8;
+var i = 9;
 var r = 0
 var result = function(name){
 	var num = ++r;
@@ -164,3 +169,20 @@ uri:'http://'+testconf.hostname+':3000/h',
 	should.strictEqual(body, '{\"data\":\"<li>hello world</li><li>'+testconf.hostname+'</li><li>male</li><form></form>\"}');
 	result('/h request')
 });
+
+
+
+setTimeout(function(){
+    rrest.ejs.open ='{{'
+    rrest.ejs.close ='}}'
+request({
+method:'get',
+uri:'http://'+testconf.hostname+':3000/i',
+}, function(error, res, body){
+	should.strictEqual(res.statusCode, 200);
+	should.strictEqual(body, '{\"data\":\"<li>hello world</li><li>'+testconf.hostname+'</li><li>male</li><form></form>\"}');
+	result('/h request')
+});
+
+
+},1000)

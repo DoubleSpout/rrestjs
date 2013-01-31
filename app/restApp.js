@@ -5,4 +5,5 @@ var http = require('http'),
     server = http.createServer(function (req, res){
 		app(req, res);
 	}).listen(rrest.config.listenPort);
+
 _rrest = rrest; //全局变量
