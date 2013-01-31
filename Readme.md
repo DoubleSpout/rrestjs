@@ -438,7 +438,7 @@
 
   AutoStatic:自动响应静态文件, 需要去config配置, 例如: 将staticFolder设置为:'/app/static/skin', 将autoStatic设置为:'skin', 则用户只需要将图片src设置为 '/skin/face/spout.png' 即可自动响应此图片文件
 
-  staticParse:css和js文件压缩整合自动响应，例如：'/static/?parse=/index.body.css|/index.user.css|/user.face.css' 表示压缩整合一个css响应给客户端，js同理
+  staticParse:css和js文件压缩整合自动响应，例如：'/static/?parse=/static/index.body.css|/static/index.user.css|/static/user.face.css' 表示压缩整合一个css响应给客户端，js同理
 
 ##AutoCreateFolders
 
