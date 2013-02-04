@@ -16,7 +16,7 @@
     "ROA",
     "high performance"
   ],
-  "version": "1.1.5",
+  "version": "1.1.8",
   "url": "http://www.rrestjs.com",
   "homepage": "http://www.rrestjs.com",
   "repository": {
@@ -54,7 +54,7 @@
     "name": "doublespout",
     "email": "snoopyxdy@163.com"
   },
-  "_id": "rrestjs@1.1.5",
+  "_id": "rrestjs@1.1.6",
   "optionalDependencies": {},
   "_engineSupported": true,
   "_npmVersion": "1.1.21",

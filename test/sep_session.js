@@ -9,7 +9,7 @@ module.exports.conf = {
 		baseDir: path.join(__dirname),
 		//cluster配置
 		isCluster:true, //是否开启多进程集群
-		ClusterNum:4, //开启的进程数
+		ClusterNum:2, //开启的进程数
 		//session配置
 		isSession:true, //是否开启session，开启会影响性能。
 		sessionDbStore:true,
@@ -37,16 +37,14 @@ var http = require('http'),
 		res.send(++req.session.count);
 	}).listen(rrest.config.listenPort);
 
-
+if(rrest.forkid == 'master'){
 
 http.globalAgent.maxSockets = 20;
-
-if(rrest.forkid == 'master'){
 
 /*test sep session client*/
 var count = 0;
 var overfunc = function(){//结束函数
-    count++;
+
 	console.log(count)
     if(count>=4){
 		
@@ -89,18 +87,28 @@ var gorequest= function(param_cookie,pathurl,counti){
 					res.on('data', function (chunk) {
 						body += chunk;
 					}).on('end', function(){
-						if(body == 'done') return console.log('sep session '+pathurl+' test done!') || overfunc();
+						if(body == 'done') return console.log('sep session '+pathurl+' test done!');
 						if(body == 'del'){
 							counti=0;
+							count++;
 							console.log('100 request '+pathurl+' has complete!')
-							return me(null,pathurl,counti);
+							if(count<4){
+								return me(null,pathurl,counti);
+							}
+							return overfunc();
 						}
 						var session_i = ++counti;
 						var session_count = body - 0;
 						should.strictEqual(session_i, session_count);
 						var setcookie = res.headers['set-cookie'];
+
 						process.nextTick(function(){
-							setTimeout(function(){me(setcookie, pathurl,counti);},400);
+							setTimeout(function(){
+								
+									me(setcookie, pathurl,counti);
+								
+								
+							},400);
 						});
 					})
 			}).on('err', function(e){
