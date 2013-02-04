@@ -12,12 +12,14 @@ module.exports.conf = {
 		ClusterNum:4, //开启的进程数
 		//session配置
 		isSession:true, //是否开启session，开启会影响性能。
-		syncSession:true,//当多进程时是否开启session同步，开启会影响性能。
+		sessionDbStore:true,
+		syncSession:false,//当多进程时是否开启session同步，开启会影响性能。
 		sessionName:'rrSid', //保存session id 的cookie 的name
 		sessionExpire:false, //false表示会话session，否则填入1000*60，表示session有效1分钟
 		clearSessionSetInteval:1000*60*60, //自动清理垃圾session时间，建设设置为1小时
 		clearSessionTime:1000*60*60*24,//会话session超时，建议设置为1天
-		sepSession:['/user','/pay','/game']
+		sepSession:['/user','/pay','/game'],
+		isMongodb:true,
 
 	};
 var http = require('http'),
@@ -45,7 +47,9 @@ if(rrest.forkid == 'master'){
 var count = 0;
 var overfunc = function(){//结束函数
     count++;
+	console.log(count)
     if(count>=4){
+		
         console.log('sep session all test done')
         process.exit();
     }
@@ -96,7 +100,7 @@ var gorequest= function(param_cookie,pathurl,counti){
 						should.strictEqual(session_i, session_count);
 						var setcookie = res.headers['set-cookie'];
 						process.nextTick(function(){
-							setTimeout(function(){me(setcookie, pathurl,counti);},600);
+							setTimeout(function(){me(setcookie, pathurl,counti);},400);
 						});
 					})
 			}).on('err', function(e){
