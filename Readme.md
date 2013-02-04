@@ -208,7 +208,7 @@
 
 ##Response: response对象，是ServerResponse的一个实例
    
-  Response.cache(type, maxAge): 设置请求缓存头，让浏览器对此uri请求缓存,type: public, private等, maxAge: 缓存的时间,单位毫秒; 
+  Response.cache(type, maxAge): 设置请求缓存头，让浏览器对此uri请求缓存,type: public, private等, maxAge: 缓存的时间,单位毫秒; 如果想清除缓存，不响应304，则可以使用res.cache(false)或者res.cache('public', -1)
 
   Response.send(body, [statscode, iszlib, issession]): 响应客户端的请求, body: buffer或者string响应主体. statscode: 请求状态码, 默认200. iszlib: 此次响应是否开启deflate或gzip, 默认:true. issession: 本次响应是否输出cookie更新session, 默认:true;
 

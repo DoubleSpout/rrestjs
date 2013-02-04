@@ -22,13 +22,32 @@ var http = require('http'),
 		}
 		if(req.path[0] == 'r404'){
 			res.r404('/static/404.html');
+
 		}
 		if(req.path[0] == 'redirect'){
 			res.redirect('/login', 301);
 		}
 		if(req.path[0] == 'sendfile'){
+            res.cache('public',-2);
+            should.strictEqual(res._nocache, true);
 			res.file('/static/favicon.ico');
 		}
+        if(req.path[0] == 'sendfile2'){
+            res.cache(false);
+            should.strictEqual(res._nocache, true);
+			res.file('/static/404.html');
+		}
+
+        if(req.path[0] == 'sendfile3'){
+            res.cache('public',-2);
+            should.strictEqual(res._nocache, true);
+			res.file('/static/404.html');
+		}
+
+                    res.cache(false);
+            should.strictEqual(res._nocache, true);
+
+
 		if(req.path[0] == 'download'){
 			res.download(__dirname+'/static/favicon.ico');
 		}
@@ -43,6 +62,8 @@ var http = require('http'),
 			res.send('');
 		}
 		if(req.path[0] == 'r500'){
+            res.cache('public',-1);
+            should.strictEqual(res._nocache, true);
 			res.r500();
 		}
 		if(req.path[0] == 'r403'){
@@ -55,10 +76,10 @@ rrest.tploption.userid = function(req,res){return req.ip};
 rrest.tploption.name = 'rrestjs default';
 rrest.tploption.usersex = 'male';
 
-http.globalAgent.maxSockets = 10;
+http.globalAgent.maxSockets = 12;
 
 var file = require('fs');
-var i = 10;
+var i = 12;
 var r = 0
 var result = function(name){
 	var num = ++r;
@@ -122,9 +143,27 @@ getfn('redirect', function(res, body){
 getfn('sendfile', function(res, body){
 	var fav = file.readFileSync(__dirname+'/static/favicon.ico', 'utf-8');
 	should.strictEqual(res.statusCode, 200);
+    should.strictEqual(res.headers['cache-control'], 'public, max-age=-1');
 	should.strictEqual(body, fav);
 	result('sendfile');
 });
+
+getfn('sendfile2', function(res, body){
+
+	should.strictEqual(res.statusCode, 200);
+
+	result('sendfile');
+});
+
+
+getfn('sendfile3', function(res, body){
+
+	should.strictEqual(res.statusCode, 200);
+    should.strictEqual(res.headers['cache-control'], 'public, max-age=-1');
+
+	result('sendfile');
+});
+
 
 getfn('download', function(res, body){
 	var fav = file.readFileSync(__dirname+'/static/favicon.ico', 'utf-8');

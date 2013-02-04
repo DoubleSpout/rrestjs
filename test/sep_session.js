@@ -108,7 +108,7 @@ var gorequest= function(param_cookie,pathurl,counti){
 									me(setcookie, pathurl,counti);
 								
 								
-							},400);
+							},600);
 						});
 					})
 			}).on('err', function(e){
