@@ -2,6 +2,7 @@
 	基本测试，response 例子
 */
 var should = require('should');
+var fs = require('fs');
 var path = require('path');
 var testconf = require('./testconf.js');
 module.exports.rrestjsconfig = {
@@ -11,6 +12,7 @@ module.exports.rrestjsconfig = {
 	baseDir: path.join(__dirname),
 };
 
+var imgbuf = fs.readFileSync(path.join(__dirname,'static','octocat.png'))
 
 var http = require('http'),
 	rrest = require('../'),
@@ -69,6 +71,12 @@ var http = require('http'),
 		if(req.path[0] == 'r403'){
 			res.r403();
 		}
+
+		if(req.path[0] == 'img'){
+			
+			res.setHeader('content-type', 'image/jpeg')
+			res.send(imgbuf);
+		}
 	}).listen(rrest.config.listenPort);
 
 //设置全局的模版option
@@ -76,10 +84,10 @@ rrest.tploption.userid = function(req,res){return req.ip};
 rrest.tploption.name = 'rrestjs default';
 rrest.tploption.usersex = 'male';
 
-http.globalAgent.maxSockets = 12;
+http.globalAgent.maxSockets = 13;
 
 var file = require('fs');
-var i = 12;
+var i = 13;
 var r = 0
 var result = function(name){
 	var num = ++r;
@@ -199,6 +207,14 @@ getfn('r403', function(res, body){
 
 getfn('r500', function(res, body){
 	should.strictEqual(res.statusCode, 500);
+	result('500 error');
+});
+
+getfn('img', function(res, body){
+	var imgbuf2 = fs.readFileSync(path.join(__dirname,'static','octocat.png'),'utf-8')
+	should.strictEqual(res.statusCode, 200);
+	should.strictEqual(res.headers['content-type'], 'image/jpeg')
+	should.strictEqual(body, imgbuf2);
 	result('500 error');
 });
 
