@@ -2,7 +2,9 @@ module.exports.rrestjsconfig = require('./config/post.conf.js');
 var http = require('http'),
 	rrest = require('../'),
     server = http.createServer(function (req, res){
+		res.setHeader('content-type', 'text/html')
 		res.write('<body>');
+		res.write('req.headers:'+JSON.stringify(req.headers)+'<br />');
 		res.write('req.path:'+req.path+'<br />');
 		res.write('req.ip:'+req.ip+'<br />');
 		res.write('req.referer or req.referrer:'+req.referer+'<br />');
@@ -19,3 +21,6 @@ var http = require('http'),
 		res.write('<script>document.cookie = "name = spout"</script>');
 		res.end('</body>');
 	}).listen(rrest.config.listenPort);
+
+
+	console.log(global)

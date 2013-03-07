@@ -84,6 +84,8 @@
 
 ##开发建议：
 
+  在1.2.4版本，rrestjs框架重新改写了部分全局变量，保留使用了 global.restlog、global.rrest、global._restConfig 这三个全局变量，请注意
+
   可以利用打包下载的文件目录直接开发，也可以像express那样自己建立搭建文件夹进行开发，唯一需要注意的是 module.exports.conf = require('./config/config'); 加载配置文件语句需要放在 require('rrestjs'); 之前。
 
   由于抛弃了路由映射表，所以在入口处需要根据用户请求的url来分配到指定控制器中，下面是一个简单的npm安装rrestjs搭建应用入口的代码例子：
