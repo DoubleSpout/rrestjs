@@ -41,9 +41,9 @@ rrest(function(){
 
 setTimeout(function(){
 	var should = require('should');
-	var fatal = fs.readFileSync(__dirname+'/mylogs/restlog_main.log.1', 'utf-8');
-	var error = fs.readFileSync(__dirname+'/mylogs/restlog_main.log.2', 'utf-8');
-	var warn = fs.readFileSync(__dirname+'/mylogs/restlog_main.log.3', 'utf-8');
+	var fatal = fs.readFileSync(__dirname+'/mylogs/restlog_main.log', 'utf-8');
+	var error = fs.readFileSync(__dirname+'/mylogs/restlog_main.log.1', 'utf-8');
+	var warn = fs.readFileSync(__dirname+'/mylogs/restlog_main.log.2', 'utf-8');
 	should.strictEqual(fatal.indexOf('FATAL') !== -1, true);
 	should.strictEqual(error.indexOf('ERROR') !== -1, true);
 	should.strictEqual(warn.indexOf('WARN') !== -1, true);
