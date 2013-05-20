@@ -37,7 +37,7 @@ var result = function(name){
 	var num = ++r;
 	console.log('%s test done, receive %d/%d', name, num, i);
 	if(num>=i){
-		console.log('response.js test done.')
+		console.log('req_param.js test done.')
 		process.exit();
 	}
 }

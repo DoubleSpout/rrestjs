@@ -44,7 +44,7 @@ var result = function(name){
 	var num = ++r;
 	console.log('%s test done, receive %d/%d', name, num, i);
 	if(num>=i){
-		console.log('response.js test done.')
+		console.log('upload.js test done.')
 		process.exit();
 	}
 }
