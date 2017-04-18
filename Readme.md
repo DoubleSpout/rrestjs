@@ -15,19 +15,19 @@
 
   3、用户根据请求路径，找到user.js文件，然后执行其中的face方法，根据请求的method和uid，用户可以自由的响应不同的内容
 
-##项目演示网址：http://www.rrestjs.com
+## 项目演示网址：http://www.rrestjs.com
 
   利用rrestjs框架搭建的一个基于mongodb和nodejs的个人小站，有jade模版输出和留言板的小应用，代码在本例 app 文件夹中。
 
-##案例演示网址：http://www.wujb.net
+## 案例演示网址：http://www.wujb.net
    
    wujb.net是一个基于rrestjs框架开发的，node.js和mongodb搭建的个人博客小站，有好友，私信，喜欢等功能
 
-##新手入门教程
+## 新手入门教程
  
   手把手教程： http://snoopyxdy.blog.163.com/blog/static/60117440201211743031517/
 
-##安装方法：
+## 安装方法：
 
   目前没有对windows环境下做任何测试和支持，请使用linux系统
 
@@ -35,7 +35,7 @@
 
   2、直接从github上打包下载  
 
-##框架介绍：目前是0.8.0版本，unstable版本，近期推出v1.0版本，包括大量的test测试代码
+## 框架介绍：目前是0.8.0版本，unstable版本，近期推出v1.0版本，包括大量的test测试代码
  
   社区文章： http://club.cnodejs.org/topic/4f16442ccae1f4aa27001039
 
@@ -55,13 +55,13 @@
 	
   v0.9升级博客(修复bug，增加手动路由功能)：http://snoopyxdy.blog.163.com/blog/static/60117440201291025549630/
 
-##性能测试：
+## 性能测试：
 
   性能测试地址，对比node.js, expressjs和rrestjs: http://snoopyxdy.blog.163.com/blog/static/6011744020120135424340/
 
   rrestjs和expressjs功能对比: http://snoopyxdy.blog.163.com/blog/static/60117440201201344425304/
 
-##简单的代码风格：一个hello world的例子
+## 简单的代码风格：一个hello world的例子
 
 
       module.exports.conf = require('./config/config');
@@ -82,7 +82,7 @@
 
 
 
-##开发建议：
+## 开发建议：
 
   在1.2.4版本，rrestjs框架重新改写了部分全局变量，保留使用了 global.restlog、global.rrest、global._restConfig 这三个全局变量，请注意
 
@@ -122,7 +122,7 @@
 	  pool = rrest.mongo;//mongodb连接池的方法，例如：rrest.mongo(function(err, db, release){ dosomething... 然后 将连接交还连接池执行 release() }, [dbname]); 详见下面api
 
 
-##config
+## config
  
   config是rrestjs最重要的文件，它是让rrestjs正常启动必不可少的文件。您只需要在您第一次 require('rrestjs') 前加上代码： module.exports.conf = require(您config文件存放地址)  即可，当然您也可以任意在您的config文件中加入配置常量，具体config格式请参阅下面连接。
   
@@ -131,7 +131,7 @@
   config配置详细说明地址：https://github.com/DoubleSpout/rrestjs/blob/master/config/default_config.js
 
 
-##开发模式-d或--dev参数
+## 开发模式-d或--dev参数
  
   进入开发者模式，只需要 node app.js -d 或者 node app.js -dev，用来进入，还可以根据开发者模式加载开发配置文件，比如：module.exports.conf_dev，这样就加载了开发模式下的配置文件了。
 
@@ -146,7 +146,7 @@
   如果进入了开发模式没有找到相关的config文件，则使用默认配置
 
 
-##baseDir
+## baseDir
 
   rrestjs所有的配置目录都是相对于baseDir的相对目录，baseDir的设置通常分为3种：注意除 baseDir 其他路径的配置都需要加上前缀'/'
   
@@ -156,7 +156,7 @@
 
   3、baseDir： '/usr/local/nodejs/rrestApp' //直接设定绝对目录
 
-##如何正确运行example
+## 如何正确运行example
 
   example中的例子均在本人机器上测试通过，linux 2.6.8 64bit / node.js v0.6.6 / mongodb v2.0，对于windows下并没有测试过，请见谅。 
 
@@ -166,13 +166,13 @@
 
   也可以使用开发者模式，带自动重启（windows下无效）   rrestjs -p /tmp/foo -d && cd /tmp/foo;
 
-##API
+## API
 
   说明：[]内表示可选参数，但是必须根据顺序传递，如果是fn([arg1], [arg2])，表示arg1或者arg2都是可选参数，并且无需根据顺序
   
   api属性和方法都为小写, 加上"()"的为方法，没有的是属性，还有一些特有功能的使用帮助和示例
 
-##Request: request对象，是IncomingMessage的一个实例;
+## Request: request对象，是IncomingMessage的一个实例;
   
   Request.path: 拆分过后的uri数组,例如访问/user/face/spout, 则拆分成: ['user', 'face', 'spout'], 如果访问'/'则拆分成['index', 'index'], 会自动补足2位;
 
@@ -208,7 +208,7 @@
 
   Request._body 对于支持webapi的json或者xml数据提交过来的原始字符串，可供用户自行使用
 
-##Response: response对象，是ServerResponse的一个实例
+## Response: response对象，是ServerResponse的一个实例
    
   Response.cache(type, maxAge): 设置请求缓存头，让浏览器对此uri请求缓存,type: public, private等, maxAge: 缓存的时间,单位毫秒; 如果想清除缓存，不响应304，则可以使用res.cache(false)或者res.cache('public', -1)
 
@@ -256,7 +256,7 @@
 
   Response.api(object): 此方法用来返回webapi的接口，如果请求头含有accept application/json的，则返回json字符串，如果含有application/xml，则返回xml字符串
 
-##0.9版本新增手动路由（类似expressjs）
+## 0.9版本新增手动路由（类似expressjs）
 
   用户可以再config.js新增这样的设置：{}花括号内的为变量占位，表示此段url为可变参数
 
@@ -288,7 +288,7 @@
      
 
 
-##proxy反向代理和http代理功能
+## proxy反向代理和http代理功能
  
   rrestjs默认加载 node-http-proxy 用来让node做代理服务器，完全无缝贴合，这也和rrestjs坚持使用原生的node.js的API有关
 
@@ -296,7 +296,7 @@
   
   具体api使用方法见：https://github.com/nodejitsu/node-http-proxy
 
-##tploption: rrestjs模版的默认传参对象
+## tploption: rrestjs模版的默认传参对象
 
   require('rrestjs').tploption 所有res.render()方法中都会传递给模版这个对象，如果有重复则以render方法的为准，但不会覆盖全局的tploption。
 
@@ -305,15 +305,15 @@
   也可以 require('rrestjs').tploption.name = function(req, res){return req.session.username;}; //函数接受req，res两个参数，并且return值输出给模版
 
 
-##csrf防御
+## csrf防御
 
   默认如果开启session，则会在模版编译输出时在<form>表单中默认添加<input name="_csrf" />，并且在session中也会添加session._csrf，开发者可以根据比对这2者是否匹配来确定是否合法。
 
-##AutoRequire: 自动加载 /modules 文件夹中的模块, 可以在config配置文件中详细配置开启或者例外
+## AutoRequire: 自动加载 /modules 文件夹中的模块, 可以在config配置文件中详细配置开启或者例外
 
   require('rrestjs').mod['文件名']: 文件名会自动将后缀.js去掉, 例如在modules/as.js模块自动加载进来, 使用方法:  require('rrestjs').mod['as'];
   
-##MongdbConnect: Mongodb数据库连接,可在config配置文件中详细配置, 比如: 连接数, 连接端口等等
+## MongdbConnect: Mongodb数据库连接,可在config配置文件中详细配置, 比如: 连接数, 连接端口等等
 
   ps：如果您是使用nae的话，需要将config如下设置：
         
@@ -358,7 +358,7 @@
   
   require('rrestjs').mpool(callback, [priority ]): genricpool方法, acquire.mpool(callback, priority )表示去连接池中获取一个连接,priority 表示优先级, callback接收2个参数err, db;无论err与否, 都需要mpool.release(db); 归还连接到连接池。建议使用上面的mongo方法。
   
-##clientpipe模块，v0.9.0新增模块打通了前后端，使后端的一些模块可以供前端直接调用
+## clientpipe模块，v0.9.0新增模块打通了前后端，使后端的一些模块可以供前端直接调用
 
   require('rrestjs').clientpipe就可以访问这个功能了，rrest.clientpipe 利用socket.io 和 now.js 组合封装而成。
 
@@ -428,7 +428,7 @@
 	    });
 
 
-##restlog: 全局变量, 日志对象详细配置, 例如是否开启, 如何分级, 如何切分可在config文件中详细配置
+## restlog: 全局变量, 日志对象详细配置, 例如是否开启, 如何分级, 如何切分可在config文件中详细配置
 
   restlog.info(errmsg): 等级info日志, 测试用, 生产环境建议开启error等级
 
@@ -436,17 +436,17 @@
 
   restlog.error(errmsg): 等级error, 生产环境用
 
-##AutoStatic
+## AutoStatic
 
   AutoStatic:自动响应静态文件, 需要去config配置, 例如: 将staticFolder设置为:'/app/static/skin', 将autoStatic设置为:'skin', 则用户只需要将图片src设置为 '/skin/face/spout.png' 即可自动响应此图片文件
 
   staticParse:css和js文件压缩整合自动响应，例如：'/static/?parse=/static/index.body.css|/static/index.user.css|/static/user.face.css' 表示压缩整合一个css响应给客户端，js同理
 
-##AutoCreateFolders
+## AutoCreateFolders
 
   autoCreateFolders:自动创建文件目录，会根据config配置文件的临时目录地址自动创建目录
 
-##IPtables
+## IPtables
 
   IP过滤访问，可以根据配置进行白名单或者黑名单的切换IP过滤，路径过滤只能在白名单中使用。
 
@@ -461,13 +461,13 @@
 
 	NotAllow:'No permission!', //禁止访问响应给客户端的信息
 
-##ClusterPlus心跳以及内存监控
+## ClusterPlus心跳以及内存监控
 
   如果将config文件中的Heartbeat和ClusterMaxMemory设置成相应的数值，则会开启心跳和内存监控功能，当主进程失去对子进程的心跳超过3次，自动重启子进程。
 
   当子进程内存超过指定数量时，自动重启子进程，所以这个值建议不要设置过低。
 
-##ClusterPlus
+## ClusterPlus
  
   ClusterPlus是rrestjs内置的一个多进程多任务管理模块, 主要为rrestjs提供多进程多任务, 主进程自动唤醒意外挂掉的子进程, 同步内存session以及开发模式下的保存自动重启，让您想开发PHP那样方便的进行node.js开发.
 
@@ -529,7 +529,7 @@
 	    }).listen(rrest.config.listenPort);//读取配置文件的监听端口号，必须这么写，只需修改配置文件即可轻松部署
   
   
-##AsyncProxy
+## AsyncProxy
 
   AsyncProxy是一个异步代理的模块, 利用事件监听机制，并发异步处理并最终汇总处理的模块, 同时也支持异步依次处理的链式调用。
 

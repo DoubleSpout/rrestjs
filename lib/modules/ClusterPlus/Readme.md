@@ -1,6 +1,6 @@
 # ClusterPlus——node.js多任务子进程管理模块  
 
-##simple example:
+## simple example:
 
     var http = require('http'),
 
@@ -33,7 +33,7 @@
        }
 
 
-##这是个简单的例子，
+## 这是个简单的例子，
 
 将创建cpu个子进程来监听3000端口。
 
